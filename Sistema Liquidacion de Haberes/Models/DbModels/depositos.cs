@@ -11,11 +11,14 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class depositos
     {
         public int idDepositos { get; set; }
         public int empleados_idEmpleados { get; set; }
+
+        [Display(Name = "Fecha Depósito")]
         public System.DateTime fecha { get; set; }
     
         public virtual empleados empleados { get; set; }

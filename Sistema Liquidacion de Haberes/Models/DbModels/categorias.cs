@@ -11,7 +11,8 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class categorias
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,11 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
         }
     
         public int idCategorias { get; set; }
+
+        [Display(Name = "Nombre")]
         public string nombre { get; set; }
+
+        [Display(Name = "Salario")]
         public decimal salario { get; set; }
         public int sector_idSector { get; set; }
     

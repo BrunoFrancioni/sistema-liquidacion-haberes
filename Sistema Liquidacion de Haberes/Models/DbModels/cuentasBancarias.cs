@@ -11,7 +11,8 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class cuentasBancarias
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,8 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
     
         public int idCuentasBancarias { get; set; }
         public int bancos_idbancos { get; set; }
+
+        [Display(Name = "CBU")]
         public int cbu { get; set; }
     
         public virtual bancos bancos { get; set; }
