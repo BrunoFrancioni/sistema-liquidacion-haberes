@@ -1,0 +1,159 @@
+﻿/**
+    GLOBALES
+**/
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.contenedor {
+    max-width: 1000px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+/**
+    FRAMEWORK
+**/
+
+.centrar-texto {
+    text-align: center;
+}
+
+.mayuscula {
+    text-transform: uppercase;
+}
+
+.t-small {
+    font-size: small;
+}
+
+/**
+    TABLA
+**/
+
+div.recibo-haberes {
+    border: 1px solid black;
+}
+
+div.contenido-recibo {
+    width: 97%;
+    margin: 0 auto;
+}
+
+div.recibo-haberes h2 {
+    font-size: large;
+}
+
+/**
+    DATOS EMPRESA Y PERÍODO PAGO
+**/
+
+div.empresa-periodo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+table.periodo-pago {
+    border: 1px solid black;
+    padding: 20px;
+    font-size: medium;
+    height: 85%;
+    width: auto;
+}
+
+/**
+    LUGAR DE TRABAJO, APELLIDO NOMBRE Y LEGAJO
+**/
+
+table.lugar-nombre {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    font-size: medium;
+}
+
+/**
+    OTROS DATOS EMPLEADO(INGRESO, ANTIGUEDAD, EGRESO, ...)
+**/
+
+table.datos-empleado {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+/**
+    CATEGORÍA, OBRA SOCIAL Y ÚLTIMO DEPÓSITO
+**/
+
+div.dempleado-deposito {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+section.categoria-obra {
+    flex-basis: 50%;
+}
+
+section.ultimo-deposito {
+    flex-basis: 50%;
+}
+
+table.cat-fun-tar {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+table.obra-social {
+    width: 100%;
+}
+
+section.ultimo-deposito table {
+    width: 100%;
+}
+
+table.ultimo-deposito caption {
+    font-weight: 900;
+}
+
+/**
+    RESÚMEN
+**/
+
+table.resumen {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/**
+    TOTALES
+**/
+
+table.totales {
+    width: 100%;
+}
+
+td.neto-cobrar {
+    font-weight: bold;
+}
+
+table.totales tbody tr.total-final {
+    height: 50px;
+}

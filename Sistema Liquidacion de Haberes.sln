@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema Liquidacion de Haberes", "Sistema Liquidacion de Haberes\Sistema Liquidacion de Haberes.csproj", "{FCD156C6-E11A-4AC6-9EDC-C7B27481ADAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema Liquidacion de Haberes.Tests", "Sistema Liquidacion de Haberes.Tests\Sistema Liquidacion de Haberes.Tests.csproj", "{7288E57C-D327-49C9-A4A6-B40181CE4DAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCD156C6-E11A-4AC6-9EDC-C7B27481ADAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD156C6-E11A-4AC6-9EDC-C7B27481ADAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCD156C6-E11A-4AC6-9EDC-C7B27481ADAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD156C6-E11A-4AC6-9EDC-C7B27481ADAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7288E57C-D327-49C9-A4A6-B40181CE4DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7288E57C-D327-49C9-A4A6-B40181CE4DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7288E57C-D327-49C9-A4A6-B40181CE4DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7288E57C-D327-49C9-A4A6-B40181CE4DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2ED99C9-8612-41A0-A8A5-3BD38B0C1A57}
+	EndGlobalSection
+EndGlobal

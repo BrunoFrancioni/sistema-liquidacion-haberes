@@ -1,0 +1,263 @@
+﻿
+@{
+    Layout = null;
+
+    ViewBag.Title = "Recibo de Sueldo";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/recibo.css")
+</head>
+<body>
+    <div class="contenedor">
+        <div class="recibo-haberes">
+            <div class="contenido-recibo">
+                <h2 class="centrar-texto mayuscula">Recibo de Haberes</h2>
+                <div class="empresa-periodo">
+                    <div class="datos-empresa">
+                        <h3>Empresa de Práctica S.A.</h3>
+                        <h3>N° de C.U.I.T.: 30-66350121-2</h3>
+                        <h3>Domicilio: Viamonte 134 P.B. Capital Federal</h3>
+                    </div>
+                    <div>
+                        <table class="periodo-pago centrar-texto" rules="all">
+                            <thead class="mayuscula">
+                                <tr>
+                                    <th>Período Pago</th>
+                                    <th>Fecha de Pago</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Enero 2010</td>
+                                    <td>02/02/2009</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <table class="lugar-nombre centrar-texto" rules="all">
+                        <thead class="mayuscula">
+                            <tr>
+                                <th>Lugar de Trabajo</th>
+                                <th>Apellidos Nombres</th>
+                                <th>Legajo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Capital Federal</td>
+                                <td>Giménez Susana</td>
+                                <td>23</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <table class="datos-empleado t-small centrar-texto" rules="all">
+                        <thead class="mayuscula">
+                            <tr>
+                                <th>F.Ingr</th>
+                                <th>Antig. Reconoc.</th>
+                                <th>Fecha Egreso</th>
+                                <th>N° de C.U.I.L.</th>
+                                <th>Tipo Contrato</th>
+                                <th>C.C.T.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/06/2007</td>
+                                <td>01/06/2007</td>
+                                <td></td>
+                                <td>27-26985698-7</td>
+                                <td>T.Indeterminado</td>
+                                <td>42/1989</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="dempleado-deposito t-small centrar-texto">
+                    <section class="categoria-obra">
+                        <table class="cat-fun-tar" rules="all">
+                            <thead class="mayuscula">
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Función</th>
+                                    <th>Tarea/Sector</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Adm. 4°</td>
+                                    <td>Recepción</td>
+                                    <td>Oficinas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="obra-social" rules="all">
+                            <thead class="mayuscula">
+                                <tr>
+                                    <th>Ob. Social</th>
+                                    <th>Plan</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ATSA</td>
+                                    <td></td>
+                                    <td>2172</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section class="ultimo-deposito">
+                        <table rules="all">
+                            <caption class="mayuscula">Último depósito provisional</caption>
+                            <thead class="mayuscula">
+                                <tr>
+                                    <th>Banco</th>
+                                    <th>Mes</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Credicoop</td>
+                                    <td>Diciembre</td>
+                                    <td>09/12/2009</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <table class="resumen t-small" rules="all">
+                    <thead class="mayuscula">
+                        <tr>
+                            <th>Códigos</th>
+                            <th>Conceptos</th>
+                            <th>Cantidad</th>
+                            <th>Remunerac.</th>
+                            <th>No remunerac.</th>
+                            <th>Descuentos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>Sueldo Básico</td>
+                            <td>30 días</td>
+                            <td>2.100,62</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Feriado Nacional</td>
+                            <td>1 día</td>
+                            <td>70,02</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>PRV Feriado</td>
+                            <td>5,22</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Antigüedad</td>
+                            <td>4,00%</td>
+                            <td>87,03</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Art. 42 Almuerzo</td>
+                            <td></td>
+                            <td></td>
+                            <td>360,00</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Jubilación</td>
+                            <td>11,00%</td>
+                            <td></td>
+                            <td></td>
+                            <td>259,21</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Obra Social</td>
+                            <td>3,00%</td>
+                            <td></td>
+                            <td></td>
+                            <td>70,69</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="totales t-small" rules="all">
+                    <thead class="mayuscula">
+                        <tr>
+                            <th>Lugar de Pago</th>
+                            <th colspan="2">Remuneración Disponible</th>
+                            <th colspan="3">Totales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>2.351,04</td>
+                            <td>360,22</td>
+                            <td>509,27</td>
+                        </tr>
+                        <tr class="total-final">
+                            <td colspan="4">En Letras Son Pesos: Dos mil doscientos diecinueve</td>
+                            <td class="mayuscula neto-cobrar">Neto a Cobrar</td>
+                            <td>2.202,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
