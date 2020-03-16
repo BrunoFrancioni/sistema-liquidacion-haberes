@@ -1,4 +1,4 @@
-﻿using Sistema_Liquidacion_de_Haberes.Models.DbModels;
+﻿using Sistema_Liquidacion_de_Haberes.Models.DbFunctions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,28 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ViewResources recursos = new ViewResources();
+
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Title = "Home Page";
+
+            return View(recursos.ObtenerEmpleados());
+        }
+
+        public string RetornarObraSocial(int idObraSocial)
+        {
+            return recursos.ObtenerObraSocial(idObraSocial);
+        }
+
+        public string RetornarSector(int idCategoria)
+        {
+            return recursos.ObtenerSector(idCategoria);
+        }
+
+        public string RetornarCategoria(int idCategoria)
+        {
+            return recursos.ObtenerCategoria(idCategoria);
         }
     }
 }

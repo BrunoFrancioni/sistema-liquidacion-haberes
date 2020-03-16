@@ -8,6 +8,14 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 {
     public class ViewResources
     {
+        public IEnumerable<empleados> ObtenerEmpleados()
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                return db.empleados.ToList();
+            }
+        }
+
         public string ObtenerObraSocial(int id)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
