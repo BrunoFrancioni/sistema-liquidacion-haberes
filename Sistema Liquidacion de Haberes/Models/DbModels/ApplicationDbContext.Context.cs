@@ -13,9 +13,9 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Liquidacion_de_Haberes_Entities : DbContext
+    public partial class ApplicationDbContext : DbContext
     {
-        public Liquidacion_de_Haberes_Entities()
+        public ApplicationDbContext()
             : base("name=Liquidacion_de_Haberes_Entities")
         {
         }

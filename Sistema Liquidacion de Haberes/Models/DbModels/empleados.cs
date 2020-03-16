@@ -23,34 +23,38 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
     
         public int idEmpleados { get; set; }
 
-        [Display(Name = "Nombre")]
+        [Display(Name = "NOMBRE")]
         public string nombre { get; set; }
 
-        [Display(Name = "Apellido")]
+        [Display(Name = "APELLIDO")]
         public string apellido { get; set; }
 
-        [Display(Name = "Lugar de Trabajo")]
+        [Display(Name = "LUGAR DE TRABAJO")]
         public string lugarTrabajo { get; set; }
 
         [Display(Name = "CUIL")]
         public string cuil { get; set; }
 
-        [Display(Name = "Legajo")]
+        [Display(Name = "LEGAJO")]
         public int legajo { get; set; }
 
-        [Display(Name = "Antigüedad")]
+        [Display(Name = "ANTIGÜEDAD")]
         public System.DateTime antiguedad { get; set; }
 
-        [Display(Name = "Fecha de Ingreso")]
+        [Display(Name = "FECHA DE INGRESO")]
         public System.DateTime fechaIngreso { get; set; }
 
-        [Display(Name = "Fecha de Egreso")]
+        [Display(Name = "FECHA DE ENGRESO")]
         public Nullable<System.DateTime> fechaEgreso { get; set; }
+
+        [Display(Name = "OBRA SOCIAL")]
         public int obrasSociales_idobrasSociales { get; set; }
         public int cuentasBancarias_idcuentasBancarias { get; set; }
+
+        [Display(Name = "CATEGORÍA")]
         public int categorias_idcategorias { get; set; }
 
-        [Display(Name = "Activo")]
+        [Display(Name = "ACTIVO")]
         public byte[] activo { get; set; }
     
         public virtual categorias categorias { get; set; }

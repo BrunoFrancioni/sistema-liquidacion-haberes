@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sistema_Liquidacion_de_Haberes.Models.DbModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
