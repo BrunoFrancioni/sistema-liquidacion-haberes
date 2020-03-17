@@ -18,19 +18,27 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
             return View(recursos.ObtenerEmpleados());
         }
 
+        [HttpGet]
         public string RetornarObraSocial(int idObraSocial)
         {
             return recursos.ObtenerObraSocial(idObraSocial);
         }
 
+        [HttpGet]
         public string RetornarSector(int idCategoria)
         {
             return recursos.ObtenerSector(idCategoria);
         }
 
+        [HttpGet]
         public string RetornarCategoria(int idCategoria)
         {
             return recursos.ObtenerCategoria(idCategoria);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
         }
     }
 }
