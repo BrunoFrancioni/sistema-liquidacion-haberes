@@ -24,34 +24,41 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
         public int idEmpleados { get; set; }
 
         [Display(Name = "NOMBRE")]
+        [Required]
         public string nombre { get; set; }
 
         [Display(Name = "APELLIDO")]
+        [Required]
         public string apellido { get; set; }
 
         [Display(Name = "LUGAR DE TRABAJO")]
         public string lugarTrabajo { get; set; }
 
         [Display(Name = "CUIL")]
+        [Required]
         public string cuil { get; set; }
 
         [Display(Name = "LEGAJO")]
         public int legajo { get; set; }
 
         [Display(Name = "ANTIGÜEDAD")]
+        [Required]
         public System.DateTime antiguedad { get; set; }
 
         [Display(Name = "FECHA DE INGRESO")]
+        [Required]
         public System.DateTime fechaIngreso { get; set; }
 
         [Display(Name = "FECHA DE ENGRESO")]
         public Nullable<System.DateTime> fechaEgreso { get; set; }
 
         [Display(Name = "OBRA SOCIAL")]
+        [Required]
         public int obrasSociales_idobrasSociales { get; set; }
         public int cuentasBancarias_idcuentasBancarias { get; set; }
 
         [Display(Name = "CATEGORÍA")]
+        [Required]
         public int categorias_idcategorias { get; set; }
 
         [Display(Name = "ACTIVO")]
