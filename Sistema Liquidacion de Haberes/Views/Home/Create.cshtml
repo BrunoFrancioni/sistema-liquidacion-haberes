@@ -1,0 +1,109 @@
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbModels.empleados
+
+<h2>Crear Empleado</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <fieldset>
+        <legend>Datos Personales:</legend>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cuil, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cuil, new { htmlAttributes = new { @class = "form-control", @min = "11", @max = "11", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.cuil, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Datos Laborales:</legend>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.lugarTrabajo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lugarTrabajo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @placeholder = "Capital Federal" } })
+                @Html.ValidationMessageFor(model => model.lugarTrabajo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.antiguedad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.antiguedad, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.antiguedad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaIngreso, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fechaIngreso, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.fechaIngreso, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </fieldset>
+        
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.obrasSociales_idobrasSociales, "obrasSociales_idobrasSociales", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("obrasSociales_idobrasSociales", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.obrasSociales_idobrasSociales, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cuentasBancarias_idcuentasBancarias, "cuentasBancarias_idcuentasBancarias", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("cuentasBancarias_idcuentasBancarias", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.cuentasBancarias_idcuentasBancarias, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.categorias_idcategorias, "categorias_idcategorias", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("categorias_idcategorias", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.categorias_idcategorias, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.activo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.activo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.activo, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear Empleado" class="btn btn-dark" />
+            @Html.ActionLink("Volver al inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>
+}
