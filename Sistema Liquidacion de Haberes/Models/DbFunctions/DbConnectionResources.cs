@@ -65,7 +65,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
          * CREATE EMPLOYEE RESOURCES
          */
 
-        public bool CrearEmpleado(string nombre, string apellido, string cuil, DateTime antiguedad, DateTime fechaIngreso, DateTime fechaEgreso, int obraSocial, int categoria, byte[] activo)
+        public bool CrearEmpleado(string nombre, string apellido, string cuil, DateTime antiguedad, DateTime fechaIngreso, int obraSocial, int categoria)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -76,10 +76,9 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     cuil = cuil,
                     antiguedad = antiguedad,
                     fechaIngreso = fechaIngreso,
-                    fechaEgreso = fechaEgreso,
                     obrasSociales_idobrasSociales = obraSocial,
                     categorias_idcategorias = categoria,
-                    activo = activo
+                    activo = new byte[] { 1 }
                 };
 
                 db.empleados.Add(nuevoEmpleado);

@@ -36,6 +36,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
 
         [Display(Name = "CUIL")]
         [Required]
+        [StringLength(maximumLength: 11, MinimumLength = 11)]
         public string cuil { get; set; }
 
         [Display(Name = "LEGAJO")]
