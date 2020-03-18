@@ -235,13 +235,6 @@
       <DependentUpon>ApplicationDbContext.edmx</DependentUpon>
       <LastGenOutput>ApplicationDbContext.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\DbModels\ApplicationDbContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ApplicationDbContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DbModels\ApplicationDbContext.edmx.diagram">
-      <DependentUpon>ApplicationDbContext.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -265,6 +258,13 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <EntityDeploy Include="Models\DbModels\ApplicationDbContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ApplicationDbContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DbModels\ApplicationDbContext.edmx.diagram">
+      <DependentUpon>ApplicationDbContext.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -376,6 +376,8 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

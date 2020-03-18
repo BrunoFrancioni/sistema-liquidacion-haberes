@@ -20,19 +20,10 @@
                 @Html.DisplayNameFor(model => model.lugarTrabajo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cuil)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.legajo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.antiguedad)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.fechaIngreso)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fechaEgreso)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.obrasSociales_idobrasSociales)
@@ -57,88 +48,83 @@
         {
             foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.apellido)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.lugarTrabajo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cuil)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.legajo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.antiguedad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fechaIngreso)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fechaEgreso)
-                    </td>
-                    <td>
-                        @using (Ajax.BeginForm("RetornarObraSocial", "Home",
-                            new AjaxOptions()
-                            {
-                                HttpMethod = "GET",
-                                InsertionMode = InsertionMode.Replace,
-                                UpdateTargetId = "resultado-obra-social"
-                            }))
-                        {
-                            <span id="resultado-obra-social"></span>
-                        }
-                    </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lugarTrabajo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.legajo)
+            </td>
+            <td>
+                @{
+                    var date = item.fechaIngreso.Day + "/" + item.fechaIngreso.Month + "/" + item.fechaIngreso.Year;
+                }
+                @Html.DisplayName(@date)
+            </td>
 
-                    <td>
-                        @using (Ajax.BeginForm("RetornarSector", "Home",
-                            new AjaxOptions()
-                            {
-                                HttpMethod = "GET",
-                                InsertionMode = InsertionMode.Replace,
-                                UpdateTargetId = "resultado-sector"
-                            }))
-                        {
-                            <span id="resultado-sector"></span>
-                        }
-                    </td>
-
-                    <td>
-                        @using (Ajax.BeginForm("RetornarCategoria", "Home",
-                            new AjaxOptions()
-                            {
-                                HttpMethod = "GET",
-                                InsertionMode = InsertionMode.Replace,
-                                UpdateTargetId = "resultado-categoria"
-                            }))
-                        {
-                            <span id="resultado-categoria"></span>
-                        }
-                    </td>
-
-                    @if (item.activo == new byte[] { 1 })
+            @using (Ajax.BeginForm("RetornarObraSocial", "Home",
+                    new AjaxOptions()
                     {
-                        <td>
-                            @Html.Display("SI");
-                        </td>
-                    }
-                    else
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "resultado-obra-social"
+                    }))
+            {
+                <td id="resultado-obra-social">
+
+                </td>
+            }
+
+            @using (Ajax.BeginForm("RetornarSector", "Home",
+                    new AjaxOptions()
                     {
-                        <td>
-                            @Html.Display("NO");
-                        </td>
-                    }
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "resultado-sector"
+                    }))
+            {
+                <td id="resultado-sector">
+
+                </td>
+            }
+
+            @using (Ajax.BeginForm("RetornarCategoria", "Home",
+                    new AjaxOptions()
+                    {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "resultado-categoria"
+                    }))
+            {
+                <td id="resultado-categoria">
+
+                </td>
+            }
+
+            @if (item.activo == true)
+            {
+                <td>
+                    @Html.DisplayName("SI")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayName("NO")
+                </td>
+            }
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
             }
         }
         else

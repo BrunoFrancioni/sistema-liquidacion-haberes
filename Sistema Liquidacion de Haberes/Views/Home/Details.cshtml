@@ -1,0 +1,113 @@
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbModels.empleados
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lugarTrabajo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lugarTrabajo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.legajo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.legajo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.antiguedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.antiguedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaEgreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaEgreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categorias.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categorias.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuentasBancarias.idCuentasBancarias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuentasBancarias.idCuentasBancarias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.obrasSociales.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.obrasSociales.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idEmpleados }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

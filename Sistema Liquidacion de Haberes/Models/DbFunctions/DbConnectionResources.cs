@@ -74,11 +74,12 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     nombre = nombre,
                     apellido = apellido,
                     cuil = cuil,
+                    legajo = 1,
                     antiguedad = antiguedad,
                     fechaIngreso = fechaIngreso,
                     obrasSociales_idobrasSociales = obraSocial,
                     categorias_idcategorias = categoria,
-                    activo = new byte[] { 1 }
+                    activo = true
                 };
 
                 db.empleados.Add(nuevoEmpleado);
@@ -208,7 +209,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                 var empleado = db.empleados.Single(emp => emp.idEmpleados == idEmpleado);
 
                 empleado.fechaEgreso = DateTime.Today;
-                empleado.activo = new byte[] { 0 };
+                empleado.activo = false;
 
                 db.Entry(empleado).State = EntityState.Modified;
                 db.SaveChanges();
