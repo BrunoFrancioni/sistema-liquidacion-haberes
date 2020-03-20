@@ -1,4 +1,4 @@
-﻿@model Sistema_Liquidacion_de_Haberes.Models.DbModels.empleados
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmpleado
 
 @{
     ViewBag.Title = "Details";
@@ -10,104 +10,145 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.Nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.nombre)
+            @Html.DisplayFor(model => model.Nombre)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.apellido)
+            @Html.DisplayNameFor(model => model.Apellido)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.apellido)
+            @Html.DisplayFor(model => model.Apellido)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lugarTrabajo)
+            @Html.DisplayNameFor(model => model.Cuil)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.lugarTrabajo)
+            @Html.DisplayFor(model => model.Cuil)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cuil)
+            @Html.DisplayNameFor(model => model.LugarTrabajo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.cuil)
+            @Html.DisplayFor(model => model.LugarTrabajo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.legajo)
+            @Html.DisplayNameFor(model => model.Legajo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.legajo)
+            @Html.DisplayFor(model => model.Legajo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.antiguedad)
+            @Html.DisplayNameFor(model => model.Antiguedad)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.antiguedad)
+            @Html.DisplayFor(model => model.Antiguedad)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fechaIngreso)
+            @Html.DisplayNameFor(model => model.FechaIngreso)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fechaIngreso)
+            @Html.DisplayFor(model => model.FechaIngreso)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fechaEgreso)
+            @Html.DisplayNameFor(model => model.FechaEgreso)
+        </dt>
+
+        @if (Model.FechaEgreso == null)
+        {
+            <dd>
+                @Html.DisplayText("No corresponde")
+            </dd>
+        }
+        else
+        {
+            <dd>
+                @Html.DisplayFor(model => model.FechaEgreso)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreSector)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fechaEgreso)
+            @Html.DisplayFor(model => model.NombreSector)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.activo)
+            @Html.DisplayNameFor(model => model.NombreCategoria)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.activo)
+            @Html.DisplayFor(model => model.NombreCategoria)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.categorias.nombre)
+            @Html.DisplayNameFor(model => model.Salario)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.categorias.nombre)
+            @Html.DisplayFor(model => model.Salario)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cuentasBancarias.idCuentasBancarias)
+            @Html.DisplayNameFor(model => model.Activo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.cuentasBancarias.idCuentasBancarias)
+            @Html.DisplayFor(model => model.Activo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.obrasSociales.nombre)
+            @Html.DisplayNameFor(model => model.ObraSocial)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.obrasSociales.nombre)
+            @Html.DisplayFor(model => model.ObraSocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreBanco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreBanco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cbu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cbu)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idEmpleados }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { idEmpleado = Model.IdEmpleado }) |
+    @Html.ActionLink("Retornar al inicio", "Index")
 </p>

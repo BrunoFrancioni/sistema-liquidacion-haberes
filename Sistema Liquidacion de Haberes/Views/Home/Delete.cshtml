@@ -1,120 +1,58 @@
-﻿@model Sistema_Liquidacion_de_Haberes.Models.DbModels.empleados
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmpleado
 
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Dar de baja el empleado</h2>
+<br />
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Está seguro?</h3>
 <div>
-    <h4>empleados</h4>
     <hr />
     <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.IdEmpleado)
+
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.Nombre)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.nombre)
+            @Html.DisplayFor(model => model.Nombre)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.apellido)
+            @Html.DisplayNameFor(model => model.Apellido)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.apellido)
+            @Html.DisplayFor(model => model.Apellido)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lugarTrabajo)
+            @Html.DisplayNameFor(model => model.Cuil)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.lugarTrabajo)
+            @Html.DisplayFor(model => model.Cuil)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cuil)
+            @Html.DisplayNameFor(model => model.Legajo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.cuil)
+            @Html.DisplayFor(model => model.Legajo)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.legajo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.legajo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.antiguedad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.antiguedad)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fechaIngreso)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fechaIngreso)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fechaEgreso)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fechaEgreso)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.activo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.activo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.categorias.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.categorias.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cuentasBancarias.idCuentasBancarias)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cuentasBancarias.idCuentasBancarias)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.obrasSociales.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.obrasSociales.nombre)
-        </dd>
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Dar de baja" class="btn btn-danger" /> |
+            @Html.ActionLink("Retornar el Inicio", "Index")
         </div>
     }
 </div>

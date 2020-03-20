@@ -19,22 +19,24 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
             return View(dbConnectionResources.ObtenerEmpleados());
         }
 
-        [HttpGet]
-        public string RetornarObraSocial(int idObraSocial)
+        public ActionResult Details(int idEmpleado)
         {
-            return dbConnectionResources.ObtenerObraSocial(idObraSocial);
+            return View(dbConnectionResources.ObtenerEmpleado(idEmpleado));
         }
 
         [HttpGet]
-        public string RetornarSector(int idCategoria)
+        public ActionResult Delete(int idEmpleado)
         {
-            return dbConnectionResources.ObtenerSector(idCategoria);
+            return View(dbConnectionResources.ObtenerEmpleado(idEmpleado));
         }
 
-        [HttpGet]
-        public string RetornarCategoria(int idCategoria)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteEmployee(int idEmpleado)
         {
-            return dbConnectionResources.ObtenerCategoria(idCategoria);
+            dbConnectionResources.DarDeBajaEmpleado(idEmpleado);
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult Create()

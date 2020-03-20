@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Sistema_Liquidacion_de_Haberes.Models.DbModels.empleados>
+﻿@model IEnumerable<Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmpleado>
 
 
 <h2>Lista de Empleados</h2>
@@ -11,31 +11,31 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.apellido)
+                @Html.DisplayNameFor(model => model.Apellido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.lugarTrabajo)
+                @Html.DisplayNameFor(model => model.LugarTrabajo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.legajo)
+                @Html.DisplayNameFor(model => model.Legajo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechaIngreso)
+                @Html.DisplayNameFor(model => model.FechaIngreso)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.obrasSociales_idobrasSociales)
+                @Html.DisplayNameFor(model => model.ObraSocial)
             </th>
             <th>
-                @Html.DisplayName("SECTOR")
+                @Html.DisplayNameFor(model => model.NombreSector)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.categorias_idcategorias)
+                @Html.DisplayNameFor(model => model.NombreCategoria)
             </th>
             <th>
-                @Html.DisplayName("ACTIVO")
+                @Html.DisplayNameFor(model => model.Activo)
             </th>
             <th>
                 @Html.DisplayName("OPCIONES")
@@ -50,64 +50,37 @@
             {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre)
+                @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.apellido)
+                @Html.DisplayFor(modelItem => item.Apellido)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.lugarTrabajo)
+                @Html.DisplayFor(modelItem => item.LugarTrabajo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.legajo)
+                @Html.DisplayFor(modelItem => item.Legajo)
             </td>
             <td>
                 @{
-                    var date = item.fechaIngreso.Day + "/" + item.fechaIngreso.Month + "/" + item.fechaIngreso.Year;
+                    var date = item.FechaIngreso.Day + "/" + item.FechaIngreso.Month + "/" + item.FechaIngreso.Year;
                 }
                 @Html.DisplayName(@date)
             </td>
 
-            @using (Ajax.BeginForm("RetornarObraSocial", "Home",
-                    new AjaxOptions()
-                    {
-                        HttpMethod = "GET",
-                        InsertionMode = InsertionMode.Replace,
-                        UpdateTargetId = "resultado-obra-social"
-                    }))
-            {
-                <td id="resultado-obra-social">
+            <td>
+                @Html.DisplayFor(modelItem => item.ObraSocial)
+            </td>
 
-                </td>
-            }
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreSector)
+            </td>
 
-            @using (Ajax.BeginForm("RetornarSector", "Home",
-                    new AjaxOptions()
-                    {
-                        HttpMethod = "GET",
-                        InsertionMode = InsertionMode.Replace,
-                        UpdateTargetId = "resultado-sector"
-                    }))
-            {
-                <td id="resultado-sector">
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCategoria)
+            </td>
 
-                </td>
-            }
-
-            @using (Ajax.BeginForm("RetornarCategoria", "Home",
-                    new AjaxOptions()
-                    {
-                        HttpMethod = "GET",
-                        InsertionMode = InsertionMode.Replace,
-                        UpdateTargetId = "resultado-categoria"
-                    }))
-            {
-                <td id="resultado-categoria">
-
-                </td>
-            }
-
-            @if (item.activo == true)
+            @if (item.Activo == true)
             {
                 <td>
                     @Html.DisplayName("SI")
@@ -120,9 +93,9 @@
                 </td>
             }
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { idEmpleado = item.IdEmpleado }) |
+                @Html.ActionLink("Details", "Details", new { idEmpleado = item.IdEmpleado }) |
+                @Html.ActionLink("Dar de baja", "Delete", new { idEmpleado = item.IdEmpleado })
             </td>
         </tr>
             }
@@ -130,7 +103,7 @@
         else
         {
             <tr>
-                <td colspan="13">
+                <td colspan="10">
                     No se han encontrado resultados.
                 </td>
             </tr>

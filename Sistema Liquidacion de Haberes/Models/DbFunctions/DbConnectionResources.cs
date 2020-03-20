@@ -13,51 +13,21 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         /*
          * VIEW RESOURCES
          */
-        public IEnumerable<empleados> ObtenerEmpleados()
+        public IEnumerable<ViewModelEmpleado> ObtenerEmpleados()
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                return db.empleados.ToList();
-            }
-        }
+                var idEmpleados = (from empleado in db.empleados
+                                   select empleado.idEmpleados).ToList();
 
-        public string ObtenerObraSocial(int idObraSocial)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var obraSocial = db.obrasSociales.Where(obra => obra.idObrasSociales == idObraSocial);
+                List<ViewModelEmpleado> empleados = new List<ViewModelEmpleado>();
 
-                string nombreObraSocial = obraSocial.Select(obra => obra.nombre).ToString();
+                foreach(var id in idEmpleados)
+                {
+                    empleados.Add(ObtenerEmpleado(id));
+                }
 
-                return nombreObraSocial;
-            }
-        }
-
-        public string ObtenerSector(int idCategoria)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var categoria = db.categorias.Single(cat => cat.idCategorias == idCategoria);
-
-                int idSector = categoria.sector_idSector;
-
-                var sector = db.sectores.Where(obtenerSector => obtenerSector.idSector == idSector);
-
-                string nombreSector = sector.Select(s => s.nombre).ToString();
-
-                return nombreSector;
-            }
-        }
-
-        public string ObtenerCategoria(int id)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var categoria = db.categorias.Where(cat => cat.idCategorias == id);
-
-                string nombreCategoria = categoria.Select(cat => cat.nombre).ToString();
-
-                return nombreCategoria;
+                return (IEnumerable<ViewModelEmpleado>) empleados;
             }
         }
 
@@ -86,17 +56,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                 db.SaveChanges();
 
                 var empleado = db.empleados.Single(emp => emp.cuil == cuil);
-                int idEmpleado = empleado.idEmpleados;
 
-                return AsignarLegajo(idEmpleado) ? true : false;
-            }
-        }
-
-        public bool AsignarLegajo(int idEmpleado)
-        {
-            using(ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var empleado = db.empleados.Single(emp => emp.idEmpleados == idEmpleado);
                 empleado.legajo = empleado.idEmpleados;
 
                 db.Entry(empleado).State = EntityState.Modified;
@@ -112,7 +72,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             {
                 var obrasSociales = db.obrasSociales.ToList();
 
-                return obrasSociales;
+                return (IEnumerable<obrasSociales>) obrasSociales;
             }
         }
 
@@ -122,7 +82,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             {
                 var sectores = db.sectores.ToList();
 
-                return sectores;
+                return (IEnumerable<sectores>)sectores;
             }
         }
 
@@ -140,13 +100,48 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
          * EDIT EMPLOYEE RESOURCES
          */
 
-        public empleados ObtenerEmpleado(int idEmpleado)
+        public ViewModelEmpleado ObtenerEmpleado(int idEmpleado)
         {
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
                 var empleado = db.empleados.Single(emp => emp.idEmpleados == idEmpleado);
 
-                return empleado;
+                var obraSocial = db.obrasSociales.Single(o => o.idObrasSociales == empleado.obrasSociales_idobrasSociales);
+
+                var categoria = db.categorias.Single(cat => cat.idCategorias == empleado.categorias_idcategorias);
+
+                var sector = db.sectores.Single(s => s.idSector == categoria.sector_idSector);
+
+                string nombreSector = sector.nombre;
+
+                var cuentaBancaria = db.cuentasBancarias.Single(cuenta => cuenta.idCuentasBancarias == empleado.cuentasBancarias_idcuentasBancarias);
+
+                var banco = db.bancos.Single(b => b.idBancos == cuentaBancaria.bancos_idbancos);
+
+                string nombreBanco = banco.nombre;
+
+                ViewModelEmpleado viewEmpleado = new ViewModelEmpleado()
+                {
+                    IdEmpleado = empleado.idEmpleados,
+                    Nombre = empleado.nombre,
+                    Apellido = empleado.apellido,
+                    Cuil = empleado.cuil,
+                    LugarTrabajo = empleado.lugarTrabajo,
+                    Legajo = empleado.legajo,
+                    Antiguedad = empleado.antiguedad,
+                    FechaIngreso = empleado.fechaIngreso,
+                    FechaEgreso = empleado.fechaEgreso,
+                    NombreSector = nombreSector,
+                    NombreCategoria = categoria.nombre,
+                    Salario = categoria.salario,
+                    Activo = empleado.activo,
+                    ObraSocial = obraSocial.nombre,
+                    Plan = obraSocial.plan,
+                    NombreBanco = nombreBanco,
+                    Cbu = cuentaBancaria.cbu
+                };
+
+                return viewEmpleado;
             }
         }
 
@@ -156,17 +151,17 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             {
                 var empleado = db.empleados.Single(emp => emp.idEmpleados == idEmpleado);
 
-                if(String.IsNullOrEmpty(nombre) != false || empleado.nombre != nombre)
+                if(!(String.IsNullOrEmpty(nombre)) || empleado.nombre != nombre)
                 {
                     empleado.nombre = nombre;
                 }
 
-                if (String.IsNullOrEmpty(apellido) != false || empleado.apellido != apellido)
+                if (!(String.IsNullOrEmpty(apellido)) || empleado.apellido != apellido)
                 {
                     empleado.apellido = apellido;
                 }
 
-                if (String.IsNullOrEmpty(cuil) != false || empleado.cuil != cuil)
+                if (!(String.IsNullOrEmpty(cuil)) || empleado.cuil != cuil)
                 {
                     empleado.cuil = cuil;
                 }
@@ -202,7 +197,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
          * DELETE EMPLOYEE RESOURCES
          */
 
-        public bool EliminarEmpleado(int idEmpleado)
+        public bool DarDeBajaEmpleado(int idEmpleado)
         {
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
