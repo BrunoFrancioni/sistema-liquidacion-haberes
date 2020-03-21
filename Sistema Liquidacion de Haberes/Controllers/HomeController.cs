@@ -41,7 +41,13 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View(dbConnectionResources.ObtenerRecursosCrearEmpleado());
+        }
+
+        [HttpGet]
+        public PartialViewResult ObtenerCategorias(int idSector)
+        {
+            return PartialView("_Categorias",dbConnectionResources.ObtenerCategoria(idSector));
         }
 
         [HttpGet]

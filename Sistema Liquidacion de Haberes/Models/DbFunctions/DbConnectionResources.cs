@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using Sistema_Liquidacion_de_Haberes.Models.DbModels;
+using System.Web.Mvc;
 
 namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 {
@@ -66,13 +67,37 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             }
         }
 
-        public IEnumerable<obrasSociales> ObtenerObrasSociales()
+        public ViewModelCreateEmployee ObtenerRecursosCrearEmpleado()
+        {
+            ViewModelCreateEmployee createEmployeeModel = new ViewModelCreateEmployee()
+            {
+                LugarTrabajo = "Capital Federal",
+                ObrasSociales = ObtenerObrasSociales(),
+                Sectores = ObtenerSectores(),
+                Categorias = ObtenerCategoria(1)
+            };
+
+            return createEmployeeModel;
+        }
+
+        public IEnumerable<SelectListItem> ObtenerObrasSociales()
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var obrasSociales = db.obrasSociales.ToList();
 
-                return (IEnumerable<obrasSociales>) obrasSociales;
+                var listado = new List<SelectListItem>();
+
+                foreach(var obraSocial in obrasSociales)
+                {
+                    listado.Add(new SelectListItem
+                    {
+                        Text = obraSocial.nombre,
+                        Value = Convert.ToString(obraSocial.idObrasSociales)
+                    });
+                }
+
+                return (IEnumerable<SelectListItem>) listado;
             }
         }
 
@@ -82,17 +107,28 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             {
                 var sectores = db.sectores.ToList();
 
-                return (IEnumerable<sectores>)sectores;
+                return (IEnumerable<sectores>) sectores;
             }
         }
 
-        public IEnumerable<categorias> ObtenerCategorias(int idSector)
+        public IEnumerable<SelectListItem> ObtenerCategoria(int idSector)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var categorias = db.categorias.Select(cat => cat.sector_idSector == idSector);
+                var categorias = db.categorias.Where(cat => cat.sector_idSector == idSector).ToList();
 
-                return (IEnumerable<categorias>)categorias;
+                List<SelectListItem> listado = new List<SelectListItem>();
+
+                foreach(var categoria in categorias)
+                {
+                    listado.Add(new SelectListItem
+                    {
+                        Text = categoria.nombre,
+                        Value = Convert.ToString(categoria.idCategorias)
+                    });
+                }
+
+                return (IEnumerable<SelectListItem>) listado;
             }
         }
 
