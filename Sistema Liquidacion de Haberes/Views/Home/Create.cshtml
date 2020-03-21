@@ -1,4 +1,4 @@
-﻿@model Sistema_Liquidacion_de_Haberes.Models.DbModels.empleados
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelCreateEmployee
 
 <h2>Crear Empleado</h2>
 
@@ -14,26 +14,26 @@
         <legend>Datos Personales:</legend>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
-                @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cuil, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Cuil, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cuil, new { htmlAttributes = new { @class = "form-control", @min = "11", @max = "11", @required = "required" } })
-                @Html.ValidationMessageFor(model => model.cuil, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Cuil, new { htmlAttributes = new { @class = "form-control", @min = "11", @max = "11", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Cuil, "", new { @class = "text-danger" })
             </div>
         </div>
     </fieldset>
@@ -42,62 +42,67 @@
         <legend>Datos Laborales:</legend>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.lugarTrabajo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LugarTrabajo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.lugarTrabajo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @placeholder = "Capital Federal" } })
-                @Html.ValidationMessageFor(model => model.lugarTrabajo, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.LugarTrabajo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @placeholder = "Capital Federal" } })
+                @Html.ValidationMessageFor(model => model.LugarTrabajo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.antiguedad, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Antiguedad, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.antiguedad, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
-                @Html.ValidationMessageFor(model => model.antiguedad, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Antiguedad, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Antiguedad, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fechaIngreso, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FechaIngreso, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fechaIngreso, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
-                @Html.ValidationMessageFor(model => model.fechaIngreso, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FechaIngreso, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.FechaIngreso, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ObrasSociales, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("obras-sociales", Model.ObrasSociales, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sectores, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                Maestranza y Servicios
+                @Html.RadioButtonFor(model => model.Sectores, "Maestranza y Servicios", htmlAttributes: new { @id = "maestranza", @checked = "checked" })
+                <br />
+                Administrativo
+                @Html.RadioButtonFor(model => model.Sectores, "Administrativo", htmlAttributes: new { @id = "administrativo" })
+                <br />
+                Cajero
+                @Html.RadioButtonFor(model => model.Sectores, "Cajero", htmlAttributes: new { @id = "cajero" })
+                <br />
+                Personal Auxiliar
+                @Html.RadioButtonFor(model => model.Sectores, "Personal Auxiliar", htmlAttributes: new { @id = "personal" })
+                <br />
+                Auxiliar Especializado
+                @Html.RadioButtonFor(model => model.Sectores, "Auxiliar Especializado", htmlAttributes: new { @id = "auxiliar" })
+                <br />
+                Vendedor
+                @Html.RadioButtonFor(model => model.Sectores, "Vendedor", htmlAttributes: new { @id = "vendedor" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Categorias, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="lista-categorias">
+                @Html.DropDownList("categorias", Model.Categorias, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
     </fieldset>
-        
 
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.obrasSociales_idobrasSociales, "obrasSociales_idobrasSociales", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("obrasSociales_idobrasSociales", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.obrasSociales_idobrasSociales, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.cuentasBancarias_idcuentasBancarias, "cuentasBancarias_idcuentasBancarias", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("cuentasBancarias_idcuentasBancarias", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.cuentasBancarias_idcuentasBancarias, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.categorias_idcategorias, "categorias_idcategorias", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("categorias_idcategorias", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.categorias_idcategorias, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.activo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.activo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.activo, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -106,4 +111,101 @@
         </div>
     </div>
 </div>
+}
+
+@section scripts {
+    <script>
+        $(function () {
+            'use strict';
+
+            const sectores = {
+                maestranza: 1,
+                administrativo: 2,
+                cajero: 3,
+                personal: 4,
+                auxiliar: 4,
+                vendedor: 6
+            };
+
+            $('input#maestranza').on('click', function () {
+                $('#categorias').removeData();
+
+                var url = "@Url.Action("ObtenerCategorias", "Home")";
+                var data = { idSector: sectores.maestranza };
+
+                insertarCategorias(url, data);
+
+            })
+
+            $('input#administrativo').on('click', function () {
+                quitarChecked();
+
+                $('select#categorias').remove();
+
+                var url = "@Url.Action("ObtenerCategorias", "Home")";
+                var data = { idSector: sectores.administrativo };
+
+                insertarCategorias(url, data);
+            })
+
+            $('input#cajero').on('click', function () {
+                quitarChecked();
+
+                $('select#categorias').remove();
+
+                var url = "@Url.Action("ObtenerCategorias", "Home")";
+                var data = { idSector: sectores.cajero };
+
+                insertarCategorias(url, data);
+            })
+
+            $('input#personal').on('click', function () {
+                quitarChecked();
+
+                $('select#categorias').remove();
+
+                var url = "@Url.Action("ObtenerCategorias", "Home")";
+                var data = { idSector: sectores.personal };
+
+                insertarCategorias(url, data);
+            })
+
+            $('input#auxiliar').on('click', function () {
+                quitarChecked();
+
+                $('select#categorias').remove();
+
+                var url = "@Url.Action("ObtenerCategorias", "Home")";
+                var data = { idSector: sectores.auxiliar };
+
+                insertarCategorias(url, data);
+            })
+
+            $('input#vendedor').on('click', function () {
+                quitarChecked();
+
+                $('select#categorias').remove();
+
+                var url = "@Url.Action("ObtenerCategorias", "Home")";
+                var data = { idSector: sectores.vendedor };
+
+                insertarCategorias(url, data);
+            })
+
+
+            function quitarChecked() {
+                $('input#maestranza').removeAttr("checked");
+
+                return false;
+            }
+
+            function insertarCategorias(url, data) {
+                $.get(url, data).done(function (data) {
+                    $('div#lista-categorias').append(data);
+                }).fail(function () {
+                    alert("Ha fallado");
+                });
+            }
+        })
+    </script>    
 }

@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DbFunctions\DbConnectionResources.cs" />
+    <Compile Include="Models\DbFunctions\ViewModelCreateEmployee.cs" />
     <Compile Include="Models\DbFunctions\ViewModelEmpleado.cs" />
     <Compile Include="Models\DbModels\ApplicationDbContext.Context.cs">
       <AutoGen>True</AutoGen>
@@ -379,6 +380,7 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Shared\_Categorias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
