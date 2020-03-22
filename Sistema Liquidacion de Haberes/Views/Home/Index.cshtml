@@ -62,10 +62,7 @@
                 @Html.DisplayFor(modelItem => item.Legajo)
             </td>
             <td>
-                @{
-                    var date = item.FechaIngreso.Day + "/" + item.FechaIngreso.Month + "/" + item.FechaIngreso.Year;
-                }
-                @Html.DisplayName(@date)
+                @Html.DisplayName(item.FechaIngreso.ToString("dd/MM/yyyy"))
             </td>
 
             <td>
