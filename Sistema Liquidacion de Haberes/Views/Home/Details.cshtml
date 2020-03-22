@@ -1,4 +1,4 @@
-﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmpleado
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmployee
 
 @{
     ViewBag.Title = "Details";
@@ -70,9 +70,9 @@
         </dt>
 
         <dd>
-            @if (!Model.FechaEgreso.HasValue)
+            @if (Model.FechaEgreso.HasValue)
             {
-                @Html.DisplayFor(model => model.FechaEgreso)
+                @Html.DisplayName(Model.FechaEgreso.Value.ToString("dd/MM/yyyy"))
             }
             else
             {
