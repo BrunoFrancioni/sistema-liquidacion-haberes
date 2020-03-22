@@ -53,7 +53,7 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
         [HttpGet]
         public ActionResult Edit(int idEmpleado)
         {
-            var empleado = dbConnectionResources.ObtenerEmpleado(idEmpleado);
+            var empleado = dbConnectionResources.ObtenerRecursosEditarEmpleado(idEmpleado);
 
             return View(empleado);
         }
