@@ -47,7 +47,7 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
         [HttpGet]
         public PartialViewResult ObtenerCategorias(int idSector)
         {
-            return PartialView("_Categorias",dbConnectionResources.ObtenerCategoria(idSector));
+            return PartialView("_Categorias",dbConnectionResources.ObtenerCategorias(idSector));
         }
 
         [HttpGet]

@@ -54,7 +54,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Antiguedad)
+            @Html.DisplayName(Model.Antiguedad.ToString("dd/MM/yyyy"))
         </dd>
 
         <dt>
@@ -62,25 +62,23 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechaIngreso)
+            @Html.DisplayName(Model.FechaIngreso.ToString("dd/MM/yyyy"))
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.FechaEgreso)
         </dt>
 
-        @if (Model.FechaEgreso == null)
-        {
-            <dd>
-                @Html.DisplayText("No corresponde")
-            </dd>
-        }
-        else
-        {
-            <dd>
+        <dd>
+            @if (!Model.FechaEgreso.HasValue)
+            {
                 @Html.DisplayFor(model => model.FechaEgreso)
-            </dd>
-        }
+            }
+            else
+            {
+                @Html.DisplayName("No corresponde")
+            }
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.NombreSector)
@@ -111,7 +109,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Activo)
+            @if(Model.Activo == true)
+            {
+                @Html.DisplayName("SI")
+            }
+            else
+            {
+                @Html.DisplayName("NO")
+            }
         </dd>
 
         <dt>
