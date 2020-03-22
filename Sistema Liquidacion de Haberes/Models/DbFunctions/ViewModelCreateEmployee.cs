@@ -48,6 +48,10 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         [Required]
         public IEnumerable<SelectListItem> ObrasSociales { get; set; }
 
+        [Display(Name = "BANCO")]
+        [Required]
+        public IEnumerable<SelectListItem> Bancos { get; set; }
+
         [Display(Name = "SECTOR")]
         public IEnumerable<sectores> Sectores { get; set; }
 

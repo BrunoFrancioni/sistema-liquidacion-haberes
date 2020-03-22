@@ -73,8 +73,9 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             {
                 LugarTrabajo = "Capital Federal",
                 ObrasSociales = ObtenerObrasSociales(),
+                Bancos = ObtenerBancos(),
                 Sectores = ObtenerSectores(),
-                Categorias = ObtenerCategoria(1)
+                Categorias = ObtenerCategorias(1)
             };
 
             return createEmployeeModel;
@@ -111,7 +112,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             }
         }
 
-        public IEnumerable<SelectListItem> ObtenerCategoria(int idSector)
+        public IEnumerable<SelectListItem> ObtenerCategorias(int idSector)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -125,6 +126,27 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     {
                         Text = categoria.nombre,
                         Value = Convert.ToString(categoria.idCategorias)
+                    });
+                }
+
+                return (IEnumerable<SelectListItem>) listado;
+            }
+        }
+
+        public IEnumerable<SelectListItem> ObtenerBancos()
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var bancos = db.bancos.ToList();
+
+                var listado = new List<SelectListItem>();
+
+                foreach(var banco in bancos)
+                {
+                    listado.Add(new SelectListItem
+                    {
+                        Text = banco.nombre,
+                        Value = Convert.ToString(banco.idBancos)
                     });
                 }
 
