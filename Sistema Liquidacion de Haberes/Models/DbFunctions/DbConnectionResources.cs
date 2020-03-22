@@ -14,21 +14,62 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         /*
          * VIEW RESOURCES
          */
-        public IEnumerable<ViewModelEmpleado> ObtenerEmpleados()
+        public IEnumerable<ViewModelEmployee> ObtenerEmpleados()
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var idEmpleados = (from empleado in db.empleados
                                    select empleado.idEmpleados).ToList();
 
-                List<ViewModelEmpleado> empleados = new List<ViewModelEmpleado>();
+                List<ViewModelEmployee> empleados = new List<ViewModelEmployee>();
 
                 foreach(var id in idEmpleados)
                 {
                     empleados.Add(ObtenerEmpleado(id));
                 }
 
-                return (IEnumerable<ViewModelEmpleado>) empleados;
+                return (IEnumerable<ViewModelEmployee>) empleados;
+            }
+        }
+
+        public ViewModelEmployee ObtenerEmpleado(int idEmpleado)
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var empleado = db.empleados.Single(emp => emp.idEmpleados == idEmpleado);
+
+                var categoria = db.categorias.Single(cat => cat.idCategorias == empleado.categorias_idcategorias);
+
+                var sector = db.sectores.Single(sec => sec.idSector == categoria.sector_idSector);
+
+                var obraSocial = db.obrasSociales.Single(obra => obra.idObrasSociales == empleado.obrasSociales_idobrasSociales);
+
+                var cuentaBancaria = db.cuentasBancarias.Single(cuenta => cuenta.idCuentasBancarias == empleado.cuentasBancarias_idcuentasBancarias);
+
+                var banco = db.bancos.Single(banc => banc.idBancos == cuentaBancaria.bancos_idbancos);
+
+                var retornoEmpleado = new ViewModelEmployee()
+                {
+                    IdEmpleado = empleado.idEmpleados,
+                    Nombre = empleado.nombre,
+                    Apellido = empleado.apellido,
+                    Cuil = empleado.cuil,
+                    LugarTrabajo = empleado.lugarTrabajo,
+                    Legajo = empleado.legajo,
+                    Antiguedad = empleado.antiguedad,
+                    FechaIngreso = empleado.fechaIngreso,
+                    FechaEgreso = empleado.fechaEgreso,
+                    NombreSector = sector.nombre,
+                    NombreCategoria = categoria.nombre,
+                    Salario = categoria.salario,
+                    Activo = empleado.activo,
+                    ObraSocial = obraSocial.nombre,
+                    Plan = obraSocial.plan,
+                    NombreBanco = banco.nombre,
+                    Cbu = cuentaBancaria.cbu
+                };
+
+                return retornoEmpleado;
             }
         }
 
@@ -158,48 +199,76 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
          * EDIT EMPLOYEE RESOURCES
          */
 
-        public ViewModelEmpleado ObtenerEmpleado(int idEmpleado)
+        public ViewModelEditEmployee ObtenerRecursosEditarEmpleado(int idEmpleado)
         {
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
                 var empleado = db.empleados.Single(emp => emp.idEmpleados == idEmpleado);
 
-                var obraSocial = db.obrasSociales.Single(o => o.idObrasSociales == empleado.obrasSociales_idobrasSociales);
-
                 var categoria = db.categorias.Single(cat => cat.idCategorias == empleado.categorias_idcategorias);
 
-                var sector = db.sectores.Single(s => s.idSector == categoria.sector_idSector);
+                var sector = db.sectores.Single(sec => sec.idSector == categoria.sector_idSector);
 
-                string nombreSector = sector.nombre;
-
-                var cuentaBancaria = db.cuentasBancarias.Single(cuenta => cuenta.idCuentasBancarias == empleado.cuentasBancarias_idcuentasBancarias);
-
-                var banco = db.bancos.Single(b => b.idBancos == cuentaBancaria.bancos_idbancos);
-
-                string nombreBanco = banco.nombre;
-
-                ViewModelEmpleado viewEmpleado = new ViewModelEmpleado()
+                ViewModelEditEmployee editEmployeeModel = new ViewModelEditEmployee()
                 {
                     IdEmpleado = empleado.idEmpleados,
                     Nombre = empleado.nombre,
                     Apellido = empleado.apellido,
                     Cuil = empleado.cuil,
                     LugarTrabajo = empleado.lugarTrabajo,
-                    Legajo = empleado.legajo,
                     Antiguedad = empleado.antiguedad,
                     FechaIngreso = empleado.fechaIngreso,
-                    FechaEgreso = empleado.fechaEgreso,
-                    NombreSector = nombreSector,
-                    NombreCategoria = categoria.nombre,
-                    Salario = categoria.salario,
-                    Activo = empleado.activo,
-                    ObraSocial = obraSocial.nombre,
-                    Plan = obraSocial.plan,
-                    NombreBanco = nombreBanco,
-                    Cbu = cuentaBancaria.cbu
+                    ObrasSociales = ObtenerEditarObraSocial(empleado.obrasSociales_idobrasSociales),
+                    IdSectorActivo = sector.idSector,
+                    Sectores = ObtenerSectores(),
+                    Categorias = ObtenerEditarCategorias(sector.idSector, empleado.categorias_idcategorias)
                 };
 
-                return viewEmpleado;
+                return editEmployeeModel;
+            }
+        }
+
+        public IEnumerable<SelectListItem> ObtenerEditarObraSocial(int idObrasocial)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var obrasSociales = db.obrasSociales.ToList();
+
+                var listado = new List<SelectListItem>();
+
+                foreach (var obraSocial in obrasSociales)
+                {
+                    listado.Add(new SelectListItem
+                    {
+                        Text = obraSocial.nombre,
+                        Value = Convert.ToString(obraSocial.idObrasSociales),
+                        Selected = (obraSocial.idObrasSociales == idObrasocial) ? true : false
+                    });
+                }
+
+                return (IEnumerable<SelectListItem>)listado;
+            }
+        }
+
+        public IEnumerable<SelectListItem> ObtenerEditarCategorias(int idSector, int idCategoria)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var categorias = db.categorias.Where(cat => cat.sector_idSector == idSector).ToList();
+
+                List<SelectListItem> listado = new List<SelectListItem>();
+
+                foreach (var categoria in categorias)
+                {
+                    listado.Add(new SelectListItem
+                    {
+                        Text = categoria.nombre,
+                        Value = Convert.ToString(categoria.idCategorias),
+                        Selected = (categoria.idCategorias == idCategoria) ? true : false //TODO: fix this shit
+                    });
+                }
+
+                return (IEnumerable<SelectListItem>)listado;
             }
         }
 

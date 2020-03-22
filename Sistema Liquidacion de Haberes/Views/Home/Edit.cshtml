@@ -1,0 +1,162 @@
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEditEmployee
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Empleado</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.IdEmpleado)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cuil, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Cuil, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cuil, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LugarTrabajo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LugarTrabajo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.LugarTrabajo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Antiguedad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Antiguedad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Antiguedad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaIngreso, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FechaIngreso, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.FechaIngreso, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ObrasSociales, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("obras-sociales", Model.ObrasSociales, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sectores, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayName("Maestranza y Servicios")
+            @if (Model.IdSectorActivo == 1)
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Maestranza y Servicios", htmlAttributes: new { @id = "editar-maestranza", @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Maestranza y Servicios", htmlAttributes: new { @id = "editar-maestranza" })
+            }
+
+            <br />
+            @Html.DisplayName("Administrativo")
+            @if (Model.IdSectorActivo == 2)
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Administrativo", htmlAttributes: new { @id = "editar-administrativo", @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Administrativo", htmlAttributes: new { @id = "editar-administrativo" })
+            }
+
+            <br />
+            @Html.DisplayName("Cajero")
+            @if (Model.IdSectorActivo == 3)
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Cajero", htmlAttributes: new { @id = "editar-cajero", @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Cajero", htmlAttributes: new { @id = "editar-cajero" })
+            }
+
+            <br />
+            @Html.DisplayName("Personal Auxiliar")
+            @if (Model.IdSectorActivo == 4)
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Personal Auxiliar", htmlAttributes: new { @id = "editar-personal", @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Personal Auxiliar", htmlAttributes: new { @id = "editar-personal" })
+            }
+
+            <br />
+            @Html.DisplayName("Auxiliar Especializado")
+            @if (Model.IdSectorActivo == 4)
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Auxiliar Especializado", htmlAttributes: new { @id = "editar-auxiliar", @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Auxiliar Especializado", htmlAttributes: new { @id = "editar-auxiliar" })
+            }
+
+            <br />
+            @Html.DisplayName("Vendedor")
+            @if (Model.IdSectorActivo == 4)
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Vendedor", htmlAttributes: new { @id = "editar-vendedor", @checked = "checked" })
+            }
+            else
+            {
+                @Html.RadioButtonFor(model => model.Sectores, "Vendedor", htmlAttributes: new { @id = "editar-vendedor" })
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Categorias, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" id="lista-categorias">
+            @Html.DropDownList("categorias", Model.Categorias, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Volver al Inicio", "Index")
+</div>

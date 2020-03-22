@@ -137,7 +137,8 @@
     </Compile>
     <Compile Include="Models\DbFunctions\DbConnectionResources.cs" />
     <Compile Include="Models\DbFunctions\ViewModelCreateEmployee.cs" />
-    <Compile Include="Models\DbFunctions\ViewModelEmpleado.cs" />
+    <Compile Include="Models\DbFunctions\ViewModelEditEmployee.cs" />
+    <Compile Include="Models\DbFunctions\ViewModelEmployee.cs" />
     <Compile Include="Models\DbModels\ApplicationDbContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -381,6 +382,7 @@
     <Content Include="Views\Home\Delete.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Shared\_Categorias.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
