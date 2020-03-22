@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 {
-    public class ViewModelEmpleado
+    public class ViewModelEmployee
     {
         public int IdEmpleado { get; set; }
 
