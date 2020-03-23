@@ -151,12 +151,10 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-success" />
+            <input type="submit" value="Save" class="btn btn-success" /> |
+            @Html.ActionLink("Volver al Inicio", "Index", new { }, new { @class = "btn btn-info" })
         </div>
     </div>
 </div>
 }
 
-<div>
-    @Html.ActionLink("Volver al Inicio", "Index")
-</div>

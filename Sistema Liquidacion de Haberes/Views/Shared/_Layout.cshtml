@@ -1,20 +1,21 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body class="mt-0">
+    <header class="bg-dark p-3 mt-0">
         <div class="container">
-            @Html.ActionLink("Sistema de Liquidación de Haberes", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Sistema de Liquidación de Haberes", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-uppercase font-weight-bold text-decoration-none text-white" })
         </div>
-    </div>
+    </header>
     <div class="container body-content">
+        <br />
         @RenderBody()
         <hr />
         <footer>
@@ -22,6 +23,7 @@
         </footer>
     </div>
 
+    @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/scripts.js")

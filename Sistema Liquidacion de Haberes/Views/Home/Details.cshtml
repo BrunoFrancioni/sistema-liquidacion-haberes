@@ -8,6 +8,9 @@
 
 <div>
     <hr />
+
+    <h3>Datos Personales</h3>
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -32,7 +35,11 @@
         <dd>
             @Html.DisplayFor(model => model.Cuil)
         </dd>
+    </dl>
 
+    <h3>Datos Laborales</h3>
+
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.LugarTrabajo)
         </dt>
@@ -109,7 +116,7 @@
         </dt>
 
         <dd>
-            @if(Model.Activo == true)
+            @if (Model.Activo == true)
             {
                 @Html.DisplayName("SI")
             }
@@ -118,7 +125,11 @@
                 @Html.DisplayName("NO")
             }
         </dd>
+    </dl>
 
+    <h3>Datos Obra Social</h3>
+
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.ObraSocial)
         </dt>
@@ -134,7 +145,11 @@
         <dd>
             @Html.DisplayFor(model => model.Plan)
         </dd>
+    </dl>
 
+    <h3>Datos Banco</h3>
+
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.NombreBanco)
         </dt>
@@ -150,10 +165,9 @@
         <dd>
             @Html.DisplayFor(model => model.Cbu)
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { idEmpleado = Model.IdEmpleado }) |
-    @Html.ActionLink("Retornar al inicio", "Index")
+    @Html.ActionLink("Edit", "Edit", new { idEmpleado = Model.IdEmpleado }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Retornar al inicio", "Index", new { }, new { @class= "btn btn-info" })
 </p>

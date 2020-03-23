@@ -1,43 +1,47 @@
 ﻿@model IEnumerable<Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmployee>
 
+@{ 
+    ViewBag.Title = "Home Page";
+}
+
 
 <h2>Lista de Empleados</h2>
-
+<hr />
 <p>
-    @Html.ActionLink("Crear nuevo", "Create")
+    @Html.ActionLink("Crear nuevo", "Create", new { area = "" }, new { @class = "btn btn-primary" })
 </p>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
         <tr>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.Apellido)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.LugarTrabajo)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.Legajo)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.FechaIngreso)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.ObraSocial)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.NombreSector)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.NombreCategoria)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayNameFor(model => model.Activo)
             </th>
-            <th>
+            <th class="align-middle">
                 @Html.DisplayName("OPCIONES")
             </th>
         </tr>
@@ -48,53 +52,63 @@
         {
             foreach (var item in Model)
             {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LugarTrabajo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Legajo)
-            </td>
-            <td>
-                @Html.DisplayName(item.FechaIngreso.ToString("dd/MM/yyyy"))
-            </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LugarTrabajo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Legajo)
+                    </td>
+                    <td>
+                        @Html.DisplayName(item.FechaIngreso.ToString("dd/MM/yyyy"))
+                    </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ObraSocial)
-            </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ObraSocial)
+                    </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreSector)
-            </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreSector)
+                    </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCategoria)
-            </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCategoria)
+                    </td>
 
-            @if (item.Activo == true)
-            {
-                <td>
-                    @Html.DisplayName("SI")
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.DisplayName("NO")
-                </td>
-            }
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { idEmpleado = item.IdEmpleado }) |
-                @Html.ActionLink("Details", "Details", new { idEmpleado = item.IdEmpleado }) |
-                @Html.ActionLink("Dar de baja", "Delete", new { idEmpleado = item.IdEmpleado })
-            </td>
-        </tr>
+                    @if (item.Activo == true)
+                    {
+                        <td>
+                            @Html.DisplayName("SI")
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayName("NO")
+                        </td>
+                    }
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { idEmpleado = item.IdEmpleado }) |
+                    @Html.ActionLink("Details", "Details", new { idEmpleado = item.IdEmpleado }) |
+                    @Html.ActionLink("Dar de baja", "Delete", new { idEmpleado = item.IdEmpleado })*@
+                        <table class="table table-borderless table-sm">
+                            <tr>
+                                <td><a href="@Url.Action("Edit", "Home", new { idEmpleado = item.IdEmpleado })"><i class="far fa-edit"></i></a></td>
+                                <td><a href="@Url.Action("Details", "Home", new { idEmpleado = item.IdEmpleado })"><i class="fas fa-info"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="@Url.Action("Delete", "Home", new { idEmpleado = item.IdEmpleado })"><i class="fas fa-user-times"></i></a></td>
+                                <td><a href=""><i class="fas fa-file-pdf"></i></a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
             }
         }
         else

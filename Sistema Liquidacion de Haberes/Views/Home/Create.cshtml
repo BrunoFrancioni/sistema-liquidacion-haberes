@@ -1,5 +1,9 @@
 ﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelCreateEmployee
 
+@{ 
+    ViewBag.Title = "Create";
+}
+
 <h2>Crear Empleado</h2>
 
 @using (Html.BeginForm()) 
@@ -13,7 +17,7 @@
     <fieldset>
         <legend>Datos Personales:</legend>
 
-        <div class="form-group">
+         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
@@ -68,36 +72,38 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ObrasSociales, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("obras-sociales", Model.ObrasSociales, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("obras-sociales", Model.ObrasSociales, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.ObrasSociales, Model.ObrasSociales, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Bancos, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("bancos", Model.Bancos, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("bancos", Model.Bancos, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.Bancos, Model.Bancos, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Sectores, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                Maestranza y Servicios
+                @Html.DisplayName("Maestranza y Servicios")
                 @Html.RadioButtonFor(model => model.Sectores, "Maestranza y Servicios", htmlAttributes: new { @id = "maestranza", @checked = "checked" })
                 <br />
-                Administrativo
+                @Html.DisplayName("Administrativo")
                 @Html.RadioButtonFor(model => model.Sectores, "Administrativo", htmlAttributes: new { @id = "administrativo" })
                 <br />
-                Cajero
+                @Html.DisplayName("Cajero")
                 @Html.RadioButtonFor(model => model.Sectores, "Cajero", htmlAttributes: new { @id = "cajero" })
                 <br />
-                Personal Auxiliar
+                @Html.DisplayName("Personal Auxiliar")
                 @Html.RadioButtonFor(model => model.Sectores, "Personal Auxiliar", htmlAttributes: new { @id = "personal" })
                 <br />
-                Auxiliar Especializado
+                @Html.DisplayName("Auxiliar Especializado")
                 @Html.RadioButtonFor(model => model.Sectores, "Auxiliar Especializado", htmlAttributes: new { @id = "auxiliar" })
                 <br />
-                Vendedor
+                @Html.DisplayName("Vendedor")
                 @Html.RadioButtonFor(model => model.Sectores, "Vendedor", htmlAttributes: new { @id = "vendedor" })
             </div>
         </div>
@@ -113,8 +119,8 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Crear Empleado" class="btn btn-dark" />
-            @Html.ActionLink("Volver al inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-secondary" })
+            <input type="submit" value="Crear Empleado" class="btn btn-success" /> |
+            @Html.ActionLink("Volver al inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-info" })
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmpleado
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmployee
 
 @{
     ViewBag.Title = "Delete";
@@ -52,7 +52,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Dar de baja" class="btn btn-danger" /> |
-            @Html.ActionLink("Retornar el Inicio", "Index")
+            @Html.ActionLink("Retornar el Inicio", "Index", new { }, new { @class = "btn btn-info" })
         </div>
     }
 </div>
