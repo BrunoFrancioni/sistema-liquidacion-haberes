@@ -10,8 +10,6 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 {
     public class ViewModelCreateEmployee
     {
-        public int IdEmpleado { get; set; }
-
         /*
          * INFORMACIÓN PERSONAL
          */
@@ -32,10 +30,6 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         [Required]
         public string Cuil { get; set; }
 
-        [Display(Name = "LUGAR DE TRABAJO")]
-        [Required]
-        public string LugarTrabajo { get; set; }
-
         [Display(Name = "ANTIGÜEDAD")]
         [Required]
         public System.DateTime Antiguedad { get; set; }
@@ -44,19 +38,13 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         [Required]
         public System.DateTime FechaIngreso { get; set; }
 
-        [Display(Name = "OBRA SOCIAL")]
-        [Required]
-        public IEnumerable<SelectListItem> ObrasSociales { get; set; }
+        [Required(ErrorMessage = "El campo OBRA SOCIAL es obligatorio.")]
+        public int IdObraSocial { get; set; }
 
-        [Display(Name = "BANCO")]
-        [Required]
-        public IEnumerable<SelectListItem> Bancos { get; set; }
+        [Required(ErrorMessage = "El campo BANCO es obligatorio.")]
+        public int IdBanco { get; set; }
 
-        [Display(Name = "SECTOR")]
-        public IEnumerable<sectores> Sectores { get; set; }
-
-        [Display(Name = "CATEGORÍA")]
-        [Required]
-        public IEnumerable<SelectListItem> Categorias { get; set; }
+        [Required(ErrorMessage = "El campo CATEGORÍA es obligatorio.")]
+        public int IdCategoria { get; set; }
     }
 }

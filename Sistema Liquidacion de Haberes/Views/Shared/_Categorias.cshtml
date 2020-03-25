@@ -1,3 +1,85 @@
-﻿@model IEnumerable<SelectListItem>
+﻿
+<div class="form-group">
+    <label for="Categorias" class="control-label col-md-2 text-uppercase">Categoría</label>
+    <div class="col-md-10">
+        <p class="control-label">Maestranza y Servicios</p>
 
-@Html.DropDownList("categorias", Model, htmlAttributes: new { @class = "form-control" })
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "1" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "2" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "3" })
+        <br /><br />
+
+        <p class="control-label">Administrativo</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "4" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "5" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "6" })
+        <br />
+        @Html.DisplayName("Categoría D")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "7" })
+        <br />
+        @Html.DisplayName("Categoría E")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "8" })
+        <br />
+        @Html.DisplayName("Categoría F")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "9" })
+        <br /><br />
+
+        <p class="control-label">Cajero</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "10" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "11" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "12" })
+        <br /><br />
+
+        <p class="control-label">Personal Auxiliar</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "13" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "14" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "15" })
+        <br /><br />
+
+        <p class="control-label">Auxiliar Especializado</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "16" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "17" })
+        <br /><br />
+
+        <p class="control-label">Vendedor</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "18" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "19" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "20" })
+        <br />
+        @Html.DisplayName("Categoría D")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "21" })
+    </div>
+</div>

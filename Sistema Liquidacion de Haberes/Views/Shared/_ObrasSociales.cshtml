@@ -1,0 +1,15 @@
+﻿
+<div class="form-group">
+    <label for="ObrasSociales" class="control-label col-md-2 text-uppercase">Obra Social</label>
+
+    <div class="col-md-10">
+        @Html.DisplayName("Swiss Medical")
+        @Html.RadioButton("ObrasSociales", "", false, htmlAttributes: new { @id = "swiss" })
+        <br />
+        @Html.DisplayName("OSDE")
+        @Html.RadioButton("ObrasSociales", "", false, htmlAttributes: new { @id = "osde" })
+        <br />
+        @Html.DisplayName("Galeno")
+        @Html.RadioButton("ObrasSociales", "", false, htmlAttributes: new { @id = "galeno" })
+    </div>
+</div>

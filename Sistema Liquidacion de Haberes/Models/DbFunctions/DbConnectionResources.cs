@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using Sistema_Liquidacion_de_Haberes.Models.DbModels;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 {
@@ -19,6 +20,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var idEmpleados = (from empleado in db.empleados
+                                   orderby empleado.activo descending
                                    select empleado.idEmpleados).ToList();
 
                 List<ViewModelEmployee> empleados = new List<ViewModelEmployee>();
@@ -77,121 +79,60 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
          * CREATE EMPLOYEE RESOURCES
          */
 
-        public bool CrearEmpleado(string nombre, string apellido, string cuil, DateTime antiguedad, DateTime fechaIngreso, int obraSocial, int categoria)
+        public void CrearEmpleado(ViewModelCreateEmployee empleado)
         {
+            CrearCuentaBancaria(empleado.IdBanco);
+
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
+                var cuentaBancaria = (from cuenta in db.cuentasBancarias
+                                      orderby cuenta.idCuentasBancarias descending
+                                      select cuenta).First();
+
+                int idCuentaBancaria = cuentaBancaria.idCuentasBancarias;
+
                 empleados nuevoEmpleado = new empleados
                 {
-                    nombre = nombre,
-                    apellido = apellido,
-                    cuil = cuil,
+                    nombre = empleado.Nombre,
+                    apellido = empleado.Apellido,
+                    lugarTrabajo = "Capital Federal",
+                    cuil = empleado.Cuil,
                     legajo = 1,
-                    antiguedad = antiguedad,
-                    fechaIngreso = fechaIngreso,
-                    obrasSociales_idobrasSociales = obraSocial,
-                    categorias_idcategorias = categoria,
+                    antiguedad = empleado.Antiguedad,
+                    fechaIngreso = empleado.FechaIngreso,
+                    fechaEgreso = null,
+                    obrasSociales_idobrasSociales = empleado.IdObraSocial,
+                    cuentasBancarias_idcuentasBancarias = idCuentaBancaria,
+                    categorias_idcategorias = empleado.IdCategoria,
                     activo = true
                 };
 
                 db.empleados.Add(nuevoEmpleado);
                 db.SaveChanges();
 
-                var empleado = db.empleados.Single(emp => emp.cuil == cuil);
+                var emp = (from e in db.empleados
+                           orderby e.idEmpleados descending
+                           select e).First();
 
-                empleado.legajo = empleado.idEmpleados;
+                emp.legajo = emp.idEmpleados;
 
-                db.Entry(empleado).State = EntityState.Modified;
+                db.Entry(emp).State = EntityState.Modified;
                 db.SaveChanges();
-
-                return true;
             }
         }
 
-        public ViewModelCreateEmployee ObtenerRecursosCrearEmpleado()
+        public void CrearCuentaBancaria(int idBanco)
         {
-            ViewModelCreateEmployee createEmployeeModel = new ViewModelCreateEmployee()
+            cuentasBancarias cuenta = new cuentasBancarias()
             {
-                LugarTrabajo = "Capital Federal",
-                ObrasSociales = ObtenerObrasSociales(),
-                Bancos = ObtenerBancos(),
-                Sectores = ObtenerSectores(),
-                Categorias = ObtenerCategorias(1)
+                bancos_idbancos = idBanco,
+                cbu = 28505909400904181
             };
 
-            return createEmployeeModel;
-        }
-
-        public IEnumerable<SelectListItem> ObtenerObrasSociales()
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var obrasSociales = db.obrasSociales.ToList();
-
-                var listado = new List<SelectListItem>();
-
-                foreach(var obraSocial in obrasSociales)
-                {
-                    listado.Add(new SelectListItem
-                    {
-                        Text = obraSocial.nombre,
-                        Value = Convert.ToString(obraSocial.idObrasSociales)
-                    });
-                }
-
-                return (IEnumerable<SelectListItem>) listado;
-            }
-        }
-
-        public IEnumerable<sectores> ObtenerSectores()
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var sectores = db.sectores.ToList();
-
-                return (IEnumerable<sectores>) sectores;
-            }
-        }
-
-        public IEnumerable<SelectListItem> ObtenerCategorias(int idSector)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var categorias = db.categorias.Where(cat => cat.sector_idSector == idSector).ToList();
-
-                List<SelectListItem> listado = new List<SelectListItem>();
-
-                foreach(var categoria in categorias)
-                {
-                    listado.Add(new SelectListItem
-                    {
-                        Text = categoria.nombre,
-                        Value = Convert.ToString(categoria.idCategorias)
-                    });
-                }
-
-                return (IEnumerable<SelectListItem>) listado;
-            }
-        }
-
-        public IEnumerable<SelectListItem> ObtenerBancos()
-        {
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
-                var bancos = db.bancos.ToList();
-
-                var listado = new List<SelectListItem>();
-
-                foreach(var banco in bancos)
-                {
-                    listado.Add(new SelectListItem
-                    {
-                        Text = banco.nombre,
-                        Value = Convert.ToString(banco.idBancos)
-                    });
-                }
-
-                return (IEnumerable<SelectListItem>) listado;
+                db.cuentasBancarias.Add(cuenta);
+                db.SaveChanges();
             }
         }
 
@@ -225,6 +166,16 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                 };
 
                 return editEmployeeModel;
+            }
+        }
+
+        public IEnumerable<sectores> ObtenerSectores()
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var sectores = db.sectores.ToList();
+
+                return (IEnumerable<sectores>)sectores;
             }
         }
 

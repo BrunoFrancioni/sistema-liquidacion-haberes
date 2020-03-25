@@ -32,7 +32,6 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbModels
         public string apellido { get; set; }
 
         [Display(Name = "LUGAR DE TRABAJO")]
-        [Required]
         public string lugarTrabajo { get; set; }
 
         [Display(Name = "CUIL")]

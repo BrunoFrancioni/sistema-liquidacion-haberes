@@ -385,6 +385,9 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Shared\_Categorias.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Shared\_LugarTrabajo.cshtml" />
+    <Content Include="Views\Shared\_ObrasSociales.cshtml" />
+    <Content Include="Views\Shared\_Bancos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

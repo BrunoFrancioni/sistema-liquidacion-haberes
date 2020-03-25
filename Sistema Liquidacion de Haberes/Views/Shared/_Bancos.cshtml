@@ -1,0 +1,21 @@
+﻿
+<div class="form-group">
+    <label for="Bancos" class="control-label col-md-2 text-uppercase">Banco</label>
+
+    <div class="col-md-10">
+        @Html.DisplayName("Galicia")
+        @Html.RadioButton("Bancos", "", false, htmlAttributes: new { @id = "galicia" })
+        <br />
+        @Html.DisplayName("Macro")
+        @Html.RadioButton("Bancos", "", false, htmlAttributes: new { @id = "macro" })
+        <br />
+        @Html.DisplayName("Santander Río")
+        @Html.RadioButton("Bancos", "", false, htmlAttributes: new { @id = "santander" })
+        <br />
+        @Html.DisplayName("BBVA")
+        @Html.RadioButton("Bancos", "", false, htmlAttributes: new { @id = "bbva" })
+        <br />
+        @Html.DisplayName("Credicoop")
+        @Html.RadioButton("Bancos", "", false, htmlAttributes: new { @id = "credicoop" })
+    </div>
+</div>

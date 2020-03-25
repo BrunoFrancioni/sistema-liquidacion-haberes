@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Sistema_Liquidacion_de_Haberes.Models.DbModels;
+using System.Data.Entity.Validation;
+using System.Text;
 
 namespace Sistema_Liquidacion_de_Haberes.Controllers
 {
@@ -41,13 +43,27 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
 
         public ActionResult Create()
         {
-            return View(dbConnectionResources.ObtenerRecursosCrearEmpleado());
+            return View(new ViewModelCreateEmployee());
         }
 
-        [HttpGet]
-        public PartialViewResult ObtenerCategorias(int idSector)
+        [HttpPost]
+        public ActionResult Create(ViewModelCreateEmployee empleado)
         {
-            return PartialView("_Categorias",dbConnectionResources.ObtenerCategorias(idSector));
+            if (ModelState.IsValid)
+            {
+                try {
+                    dbConnectionResources.CrearEmpleado(empleado);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("Create");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Create");
+            }
         }
 
         [HttpGet]

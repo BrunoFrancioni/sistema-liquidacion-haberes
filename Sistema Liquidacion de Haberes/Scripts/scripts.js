@@ -2,180 +2,148 @@
 $(function () {
     'use strict';
 
-    const sectores = {
-        maestranza: 1,
-        administrativo: 2,
-        cajero: 3,
-        personal: 4,
-        auxiliar: 4,
-        vendedor: 6
+    const obrasSociales = {
+        swiss: 1,
+        osde: 2,
+        galeno: 3
+    };
+
+    const bancos = {
+        galicia: 1,
+        macro: 2,
+        santander: 3,
+        bbva: 4,
+        creadicoop: 5
     };
 
     /**********************************************
      * CREAR EMPLEADO
      * ********************************************/
 
-    $('input#maestranza').on('click', function () {
-        $('#categorias').removeData();
+    // OBRAS SOCIALES
 
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.maestranza };
-
-        insertarCategorias(url, data);
-
+    $('input#swiss').on('click', function () {
+        $('#idObraSocial').val(obrasSociales.swiss);
     })
 
-    $('input#administrativo').on('click', function () {
-        quitarChecked();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.administrativo };
-
-        insertarCategorias(url, data);
+    $('input#osde').on('click', function () {
+        $('#idObraSocial').val(obrasSociales.osde);
     })
 
-    $('input#cajero').on('click', function () {
-        quitarChecked();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.cajero };
-
-        insertarCategorias(url, data);
+    $('input#galeno').on('click', function () {
+        $('#idObraSocial').val(obrasSociales.galeno);
     })
 
-    $('input#personal').on('click', function () {
-        quitarChecked();
+    // BANCOS
 
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.personal };
-
-        insertarCategorias(url, data);
+    $('input#galicia').on('click', function () {
+        $('#idBancos').val(bancos.galicia);
     })
 
-    $('input#auxiliar').on('click', function () {
-        quitarChecked();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.auxiliar };
-
-        insertarCategorias(url, data);
+    $('input#macro').on('click', function () {
+        $('#idBancos').val(bancos.macro);
     })
 
-    $('input#vendedor').on('click', function () {
-        quitarChecked();
+    $('input#santander').on('click', function () {
+        $('#idBancos').val(bancos.santander);
+    })
 
-        $('select#categorias').remove();
+    $('input#bbva').on('click', function () {
+        $('#idBancos').val(bancos.bbva);
+    })
 
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.vendedor };
+    $('input#credicoop').on('click', function () {
+        $('#idBancos').val(bancos.creadicoop);
+    })
 
-        insertarCategorias(url, data);
+    // CATEGORÍAS
+
+    $('input#1').on('click', function () {
+        $('#idCategorias').val(1);
+    })
+
+    $('input#2').on('click', function () {
+        $('#idCategorias').val(2);
+    })
+
+    $('input#3').on('click', function () {
+        $('#idCategorias').val(3);
+    })
+
+    $('input#4').on('click', function () {
+        $('#idCategorias').val(4);
+    })
+
+    $('input#5').on('click', function () {
+        $('#idCategorias').val(5);
+    })
+
+    $('input#6').on('click', function () {
+        $('#idCategorias').val(6);
+    })
+
+    $('input#7').on('click', function () {
+        $('#idCategorias').val(7);
+    })
+
+    $('input#8').on('click', function () {
+        $('#idCategorias').val(8);
+    })
+
+    $('input#9').on('click', function () {
+        $('#idCategorias').val(9);
+    })
+
+    $('input#10').on('click', function () {
+        $('#idCategorias').val(10);
+    })
+
+    $('input#11').on('click', function () {
+        $('#idCategorias').val(11);
+    })
+
+    $('input#12').on('click', function () {
+        $('#idCategorias').val(12);
+    })
+
+    $('input#13').on('click', function () {
+        $('#idCategorias').val(13);
+    })
+
+    $('input#14').on('click', function () {
+        $('#idCategorias').val(14);
+    })
+
+    $('input#15').on('click', function () {
+        $('#idCategorias').val(15);
+    })
+
+    $('input#16').on('click', function () {
+        $('#idCategorias').val(16);
+    })
+
+    $('input#17').on('click', function () {
+        $('#idCategorias').val(17);
+    })
+
+    $('input#18').on('click', function () {
+        $('#idCategorias').val(18);
+    })
+
+    $('input#19').on('click', function () {
+        $('#idCategorias').val(19);
+    })
+
+    $('input#20').on('click', function () {
+        $('#idCategorias').val(20);
+    })
+
+    $('input#21').on('click', function () {
+        $('#idCategorias').val(21);
     })
 
     /**********************************************
      * EDITAR EMPLEADO
      * ********************************************/
 
-    $('input#editar-maestranza').on('click', function () {
-        quitarCheckedEditar();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.maestranza };
-
-        insertarCategorias(url, data);
-    })
-
-    $('input#editar-administrativo').on('click', function () {
-        quitarCheckedEditar();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.administrativo };
-
-        insertarCategorias(url, data);
-    })
-
-    $('input#editar-cajero').on('click', function () {
-        quitarCheckedEditar();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.cajero };
-
-        insertarCategorias(url, data);
-    })
-
-    $('input#editar-personal').on('click', function () {
-        quitarCheckedEditar();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.personal };
-
-        insertarCategorias(url, data);
-    })
-
-    $('input#editar-auxiliar').on('click', function () {
-        quitarCheckedEditar();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.auxiliar };
-
-        insertarCategorias(url, data);
-    })
-
-    $('input#editar-vendedor').on('click', function () {
-        quitarCheckedEditar();
-
-        $('select#categorias').remove();
-
-        var url = "/Home/ObtenerCategorias";
-        var data = { idSector: sectores.vendedor };
-
-        insertarCategorias(url, data);
-    })
-
-
-
-    /**********************************************
-     * FUNCIONES
-     * ********************************************/
-
-    function quitarChecked() {
-        $('input#maestranza').removeAttr("checked");
-
-        return false;
-    }
-
-    function quitarCheckedEditar() {
-        $('input#editar-maestranza').removeAttr("checked");
-        $('input#editar-administrativo').removeAttr("checked");
-        $('input#editar-cajero').removeAttr("checked");
-        $('input#editar-personal').removeAttr("checked");
-        $('input#editar-auxiliar').removeAttr("checked");
-        $('input#editar-vendedor').removeAttr("checked");
-    }
-
-    function insertarCategorias(url, data) {
-        $.get(url, data).done(function (data) {
-            $('div#lista-categorias').append(data);
-        }).fail(function () {
-            alert("Ha fallado");
-        });
-    }
 })
