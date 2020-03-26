@@ -1,0 +1,172 @@
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEditEmployee
+
+<div class="form-group">
+    <label for="Categorias" class="control-label col-md-2 text-uppercase">Categoría</label>
+    <div class="col-md-10">
+        <p class="control-label">Maestranza y Servicios</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "1" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "2" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "3" })
+        <br /><br />
+
+        <p class="control-label">Administrativo</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "4" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "5" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "6" })
+        <br />
+        @Html.DisplayName("Categoría D")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "7" })
+        <br />
+        @Html.DisplayName("Categoría E")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "8" })
+        <br />
+        @Html.DisplayName("Categoría F")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "9" })
+        <br /><br />
+
+        <p class="control-label">Cajero</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "10" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "11" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "12" })
+        <br /><br />
+
+        <p class="control-label">Personal Auxiliar</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "13" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "14" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "15" })
+        <br /><br />
+
+        <p class="control-label">Auxiliar Especializado</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "16" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "17" })
+        <br /><br />
+
+        <p class="control-label">Vendedor</p>
+
+        @Html.DisplayName("Categoría A")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "18" })
+        <br />
+        @Html.DisplayName("Categoría B")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "19" })
+        <br />
+        @Html.DisplayName("Categoría C")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "20" })
+        <br />
+        @Html.DisplayName("Categoría D")
+        @Html.RadioButton("Categorias", "", false, htmlAttributes: new { @id = "21" })
+    </div>
+</div>
+
+<script>
+    if (@Model.IdCategoria == 1) {
+        document.getElementById("1").checked = true;
+    }
+
+    if (@Model.IdCategoria == 2) {
+        document.getElementById('2').checked = true;
+    }
+
+    if (@Model.IdCategoria == 3) {
+        document.getElementById('3').checked = true;
+    }
+
+    if (@Model.IdCategoria == 4) {
+        document.getElementById('4').checked = true;
+    }
+
+    if (@Model.IdCategoria == 5) {
+        document.getElementById('5').checked = true;
+    }
+
+    if (@Model.IdCategoria == 6) {
+        document.getElementById('6').checked = true;
+    }
+
+    if (@Model.IdCategoria == 7) {
+        document.getElementById('7').checked = true;
+    }
+
+    if (@Model.IdCategoria == 8) {
+        document.getElementById('8').checked = true;
+    }
+
+    if (@Model.IdCategoria == 9) {
+        document.getElementById('9').checked = true;
+    }
+
+    if (@Model.IdCategoria == 10) {
+        document.getElementById('10').checked = true;
+    }
+
+    if (@Model.IdCategoria == 11) {
+        document.getElementById('11').checked = true;
+    }
+
+    if (@Model.IdCategoria == 12) {
+        document.getElementById('12').checked = true;
+    }
+
+    if (@Model.IdCategoria == 13) {
+        document.getElementById('13').checked = true;
+    }
+
+    if (@Model.IdCategoria == 14) {
+        document.getElementById('14').checked = true;
+    }
+
+    if (@Model.IdCategoria == 15) {
+        document.getElementById('15').checked = true;
+    }
+
+    if (@Model.IdCategoria == 16) {
+        document.getElementById('16').checked = true;
+    }
+
+    if (@Model.IdCategoria == 17) {
+        document.getElementById('17').checked = true;
+    }
+
+    if (@Model.IdCategoria == 18) {
+        document.getElementById('18').checked = true;
+    }
+
+    if (@Model.IdCategoria == 19) {
+        document.getElementById('19').checked = true;
+    }
+
+    if (@Model.IdCategoria == 20) {
+        document.getElementById('20').checked = true;
+    }
+
+    if (@Model.IdCategoria == 21) {
+        document.getElementById('21').checked = true;
+    }
+</script>

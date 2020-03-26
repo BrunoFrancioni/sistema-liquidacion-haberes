@@ -50,15 +50,10 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
         [Display(Name = "OBRA SOCIAL")]
         [Required]
-        public IEnumerable<SelectListItem> ObrasSociales { get; set; }
-
-        public int IdSectorActivo { get; set; }
-
-        [Display(Name = "SECTOR")]
-        public IEnumerable<sectores> Sectores { get; set; }
+        public int IdObraSocial { get; set; }
 
         [Display(Name = "CATEGORÍA")]
         [Required]
-        public IEnumerable<SelectListItem> Categorias { get; set; }
+        public int IdCategoria { get; set; }
     }
 }

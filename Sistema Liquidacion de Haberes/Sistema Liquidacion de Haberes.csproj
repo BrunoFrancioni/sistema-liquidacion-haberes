@@ -388,6 +388,8 @@
     <Content Include="Views\Shared\_LugarTrabajo.cshtml" />
     <Content Include="Views\Shared\_ObrasSociales.cshtml" />
     <Content Include="Views\Shared\_Bancos.cshtml" />
+    <Content Include="Views\Shared\_ObrasSocialesEdit.cshtml" />
+    <Content Include="Views\Shared\_CategoriasEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

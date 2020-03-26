@@ -6,7 +6,7 @@
 
 <h2>Editar Empleado</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
@@ -64,90 +64,13 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ObrasSociales, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("obras-sociales", Model.ObrasSociales, htmlAttributes: new { @class = "form-control" })
-        </div>
-    </div>
+    @Html.Action("ObtenerObrasSocialesEdit", "Home", new { empleado = Model })
+    @Html.HiddenFor(model => model.IdObraSocial, new { @id = "idObraSocial" })
+    @Html.ValidationMessageFor(model => model.IdObraSocial, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Sectores, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DisplayName("Maestranza y Servicios")
-            @if (Model.IdSectorActivo == 1)
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Maestranza y Servicios", htmlAttributes: new { @id = "editar-maestranza", @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Maestranza y Servicios", htmlAttributes: new { @id = "editar-maestranza" })
-            }
-
-            <br />
-            @Html.DisplayName("Administrativo")
-            @if (Model.IdSectorActivo == 2)
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Administrativo", htmlAttributes: new { @id = "editar-administrativo", @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Administrativo", htmlAttributes: new { @id = "editar-administrativo" })
-            }
-
-            <br />
-            @Html.DisplayName("Cajero")
-            @if (Model.IdSectorActivo == 3)
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Cajero", htmlAttributes: new { @id = "editar-cajero", @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Cajero", htmlAttributes: new { @id = "editar-cajero" })
-            }
-
-            <br />
-            @Html.DisplayName("Personal Auxiliar")
-            @if (Model.IdSectorActivo == 4)
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Personal Auxiliar", htmlAttributes: new { @id = "editar-personal", @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Personal Auxiliar", htmlAttributes: new { @id = "editar-personal" })
-            }
-
-            <br />
-            @Html.DisplayName("Auxiliar Especializado")
-            @if (Model.IdSectorActivo == 4)
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Auxiliar Especializado", htmlAttributes: new { @id = "editar-auxiliar", @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Auxiliar Especializado", htmlAttributes: new { @id = "editar-auxiliar" })
-            }
-
-            <br />
-            @Html.DisplayName("Vendedor")
-            @if (Model.IdSectorActivo == 4)
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Vendedor", htmlAttributes: new { @id = "editar-vendedor", @checked = "checked" })
-            }
-            else
-            {
-                @Html.RadioButtonFor(model => model.Sectores, "Vendedor", htmlAttributes: new { @id = "editar-vendedor" })
-            }
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Categorias, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10" id="lista-categorias">
-            @Html.DropDownList("categorias", Model.Categorias, htmlAttributes: new { @class = "form-control" })
-        </div>
-    </div>
-
+    @Html.Action("ObtenerCategoriasEdit", "Home", new { empleado = Model })
+    @Html.HiddenFor(model => model.IdCategoria, new { @id = "idCategorias" })
+    @Html.ValidationMessageFor(model => model.IdCategoria, "", new { @class = "text-danger" })
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

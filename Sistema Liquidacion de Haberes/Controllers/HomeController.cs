@@ -74,13 +74,32 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
             return View(empleado);
         }
 
+        [HttpGet]
+        public PartialViewResult ObtenerObrasSocialesEdit(ViewModelEditEmployee empleado)
+        {
+            return PartialView("_ObrasSocialesEdit", empleado);
+        }
+
+        [HttpGet]
+        public PartialViewResult ObtenerCategoriasEdit(ViewModelEditEmployee empleado)
+        {
+            return PartialView("_CategoriasEdit", empleado);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int idEmpleados, string nombre, string apellido, string cuil, DateTime antiguedad, DateTime fechaIngreso, int obraSocial, int categoria)
+        public ActionResult Edit(ViewModelEditEmployee empleado)
         {
-            dbConnectionResources.EditarEmpleado(idEmpleados, nombre, apellido, cuil, antiguedad, fechaIngreso, obraSocial, categoria);
+            try
+            {
+                dbConnectionResources.EditarEmpleado(empleado);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch(Exception e)
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }

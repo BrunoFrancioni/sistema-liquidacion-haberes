@@ -148,8 +148,6 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
                 var categoria = db.categorias.Single(cat => cat.idCategorias == empleado.categorias_idcategorias);
 
-                var sector = db.sectores.Single(sec => sec.idSector == categoria.sector_idSector);
-
                 ViewModelEditEmployee editEmployeeModel = new ViewModelEditEmployee()
                 {
                     IdEmpleado = empleado.idEmpleados,
@@ -159,115 +157,57 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     LugarTrabajo = empleado.lugarTrabajo,
                     Antiguedad = empleado.antiguedad,
                     FechaIngreso = empleado.fechaIngreso,
-                    ObrasSociales = ObtenerEditarObraSocial(empleado.obrasSociales_idobrasSociales),
-                    IdSectorActivo = sector.idSector,
-                    Sectores = ObtenerSectores(),
-                    Categorias = ObtenerEditarCategorias(sector.idSector, empleado.categorias_idcategorias)
+                    IdObraSocial = empleado.obrasSociales_idobrasSociales,
+                    IdCategoria = categoria.idCategorias
                 };
 
                 return editEmployeeModel;
             }
         }
 
-        public IEnumerable<sectores> ObtenerSectores()
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var sectores = db.sectores.ToList();
-
-                return (IEnumerable<sectores>)sectores;
-            }
-        }
-
-        public IEnumerable<SelectListItem> ObtenerEditarObraSocial(int idObrasocial)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var obrasSociales = db.obrasSociales.ToList();
-
-                var listado = new List<SelectListItem>();
-
-                foreach (var obraSocial in obrasSociales)
-                {
-                    listado.Add(new SelectListItem
-                    {
-                        Text = obraSocial.nombre,
-                        Value = Convert.ToString(obraSocial.idObrasSociales),
-                        Selected = (obraSocial.idObrasSociales == idObrasocial) ? true : false
-                    });
-                }
-
-                return (IEnumerable<SelectListItem>)listado;
-            }
-        }
-
-        public IEnumerable<SelectListItem> ObtenerEditarCategorias(int idSector, int idCategoria)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var categorias = db.categorias.Where(cat => cat.sector_idSector == idSector).ToList();
-
-                List<SelectListItem> listado = new List<SelectListItem>();
-
-                foreach (var categoria in categorias)
-                {
-                    listado.Add(new SelectListItem
-                    {
-                        Text = categoria.nombre,
-                        Value = Convert.ToString(categoria.idCategorias),
-                        Selected = (categoria.idCategorias == idCategoria) ? true : false //TODO: fix this shit
-                    });
-                }
-
-                return (IEnumerable<SelectListItem>)listado;
-            }
-        }
-
-        public bool EditarEmpleado(int idEmpleado, string nombre, string apellido, string cuil, DateTime antiguedad, DateTime fechaIngreso,  int obraSocial, int categoria)
+        public void EditarEmpleado(ViewModelEditEmployee empleado)
         {
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
-                var empleado = db.empleados.Single(emp => emp.idEmpleados == idEmpleado);
+                var empleadoActual = db.empleados.Single(emp => emp.idEmpleados == empleado.IdEmpleado);
 
-                if(!(String.IsNullOrEmpty(nombre)) || empleado.nombre != nombre)
+                if(!(String.IsNullOrEmpty(empleado.Nombre)) || empleadoActual.nombre != empleado.Nombre)
                 {
-                    empleado.nombre = nombre;
+                    empleadoActual.nombre = empleado.Nombre;
                 }
 
-                if (!(String.IsNullOrEmpty(apellido)) || empleado.apellido != apellido)
+                if (!(String.IsNullOrEmpty(empleado.Nombre)) || empleadoActual.nombre != empleado.Apellido)
                 {
-                    empleado.apellido = apellido;
+                    empleadoActual.apellido = empleado.Apellido;
                 }
 
-                if (!(String.IsNullOrEmpty(cuil)) || empleado.cuil != cuil)
+                if (!(String.IsNullOrEmpty(empleadoActual.cuil)) || empleadoActual.cuil != empleado.Cuil)
                 {
-                    empleado.cuil = cuil;
+                    empleadoActual.cuil = empleado.Cuil;
                 }
 
-                if (empleado.antiguedad != antiguedad)
+                if (empleadoActual.antiguedad != empleado.Antiguedad)
                 {
-                    empleado.antiguedad = antiguedad;
+                    empleadoActual.antiguedad = empleado.Antiguedad;
                 }
 
-                if (empleado.fechaIngreso != fechaIngreso)
+                if (empleadoActual.fechaIngreso != empleado.FechaIngreso)
                 {
-                    empleado.fechaIngreso = fechaIngreso;
+                    empleadoActual.fechaIngreso = empleado.FechaIngreso;
                 }
 
-                if (empleado.obrasSociales_idobrasSociales != obraSocial)
+                if (empleadoActual.obrasSociales_idobrasSociales != empleado.IdObraSocial)
                 {
-                    empleado.obrasSociales_idobrasSociales = obraSocial;
+                    empleadoActual.obrasSociales_idobrasSociales = empleado.IdObraSocial;
                 }
 
-                if (empleado.categorias_idcategorias != categoria)
+                if (empleadoActual.categorias_idcategorias != empleado.IdCategoria)
                 {
-                    empleado.categorias_idcategorias = categoria;
+                    empleadoActual.categorias_idcategorias = empleado.IdCategoria;
                 }
 
-                db.Entry(empleado).State = EntityState.Modified;
+                db.Entry(empleadoActual).State = EntityState.Modified;
                 db.SaveChanges();
-
-                return true;
             }
         }
 
