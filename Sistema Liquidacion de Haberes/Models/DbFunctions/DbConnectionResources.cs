@@ -6,6 +6,7 @@ using System.Data.Entity;
 using Sistema_Liquidacion_de_Haberes.Models.DbModels;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using Rotativa;
 
 namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 {
@@ -229,6 +230,186 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
                 return true;
             }
+        }
+
+        /*
+         * RECIBO DE SUELDO
+         */
+
+        public ViewAsPdf ObtenerReciboEmpleado(int idEmpleado)
+        {
+            return new ViewAsPdf("LayoutRecibo", ObtenerViewModelReciboEmpleado(idEmpleado))
+            {
+                PageMargins = new Rotativa.Options.Margins(40, 10, 10, 10),
+                PageSize = Rotativa.Options.Size.A4
+            };
+        }
+
+        public ViewModelRecibo ObtenerViewModelReciboEmpleado(int idEmpleado)
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var empleado = db.empleados.Single(e => e.idEmpleados == idEmpleado);
+
+                var categoria = db.categorias.Single(c => c.idCategorias == empleado.categorias_idcategorias);
+
+                var sector = db.sectores.Single(s => s.idSector == categoria.sector_idSector);
+
+                var obraSocial = db.obrasSociales.Single(o => o.idObrasSociales == empleado.obrasSociales_idobrasSociales);
+
+                var cuentaBancaria = db.cuentasBancarias.Single(c => c.idCuentasBancarias == empleado.cuentasBancarias_idcuentasBancarias);
+
+                var banco = db.bancos.Single(b => b.idBancos == cuentaBancaria.bancos_idbancos);
+
+
+                ViewModelRecibo viewModelRecibo = new ViewModelRecibo()
+                {
+                    LugarTrabajo = empleado.lugarTrabajo,
+                    Nombre = empleado.nombre,
+                    Apellido = empleado.apellido,
+                    Legajo = empleado.legajo,
+                    FechaIngreso = empleado.fechaIngreso,
+                    Antiguedad = empleado.antiguedad,
+                    PorcentajeAntiguedad = CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy")),
+                    FechaEgreso = empleado.fechaEgreso,
+                    Cuil = empleado.cuil,
+                    Sector = sector.nombre,
+                    Categoria = categoria.nombre,
+                    ObraSocial = obraSocial.nombre,
+                    PlanObraSocial = obraSocial.plan,
+                    NombreBanco = banco.nombre,
+                    FechaUltimoDeposito = DateTime.Now,
+                    SueldoBasico = categoria.salario
+                };
+
+                return viewModelRecibo;
+            }
+        }
+
+        public string ObtenerMesEnLetras(string numero)
+        {
+            string resultado = "";
+                
+            switch (numero)
+            {
+                case "01":
+                    resultado = "Enero";
+                    break;
+                case "02":
+                    resultado = "Febrero";
+                    break;
+                case "03":
+                    resultado = "Marzo";
+                    break;
+                case "04":
+                    resultado = "Abril";
+                    break;
+                case "05":
+                    resultado = "Mayo";
+                    break;
+                case "06":
+                    resultado = "Junio";
+                    break;
+                case "07":
+                    resultado = "Julio";
+                    break;
+                case "08":
+                    resultado = "Agosto";
+                    break;
+                case "09":
+                    resultado = "Septiembre";
+                    break;
+                case "10":
+                    resultado = "Octubre";
+                    break;
+                case "11":
+                    resultado = "Noviembre";
+                    break;
+                case "12":
+                    resultado = "Diciembre";
+                    break;
+                default:
+                    break;
+            };
+
+            return resultado;
+        }
+
+        public string CalcularAntiguedad(string fecha)
+        {
+            string year = fecha.Substring(6, 4);
+            string month = fecha.Substring(3, 2);
+            string day = fecha.Substring(0, 2);
+
+            DateTime fechaAntiguedad = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), Convert.ToInt32(day));
+
+            //DateTime fechaCorte = new DateTime(2020, 4, 2);
+            //TimeSpan age = fechaCorte - fechaAntiguedad;
+            //DateTime totalTime = new DateTime(age.Ticks);
+
+            string fechaCorte = DiferenciaFechas(new DateTime(2020, 4, 2), fechaAntiguedad);
+
+            return fechaCorte;
+        }
+
+        private string DiferenciaFechas(DateTime fechaCorte, DateTime fechaAntiguedad)
+        {
+            int anios;
+            int meses;
+            int dias;
+
+            string str = "";
+
+            anios = (fechaCorte.Year - fechaAntiguedad.Year);
+            meses = (fechaCorte.Month - fechaAntiguedad.Month);
+            dias = (fechaCorte.Day - fechaAntiguedad.Day);
+
+            if(meses < 0)
+            {
+                anios -= 1;
+                meses += 12;
+            }
+
+            if(dias < 0)
+            {
+                meses -= 1;
+                dias += DateTime.DaysInMonth(fechaCorte.Year, fechaCorte.Month);
+            }
+
+            if(anios < 0)
+            {
+                return "Fecha Invalida";
+            }
+
+            //if(anios > 0)
+            //{
+            //    str = str + anios.ToString() + " años ";
+            //}
+
+            //if (meses > 0)
+            //{
+            //    str = str + meses.ToString() + " meses ";
+            //}
+
+            //if (dias > 0)
+            //{
+            //    str = str + dias.ToString() + " dias ";
+            //}
+
+            str = anios.ToString();
+
+            return str;
+        }
+
+        public string ObtenerNumeroEnLetras(string numero)
+        {
+            //Moneda oMoneda = new Moneda();
+
+            //string resultado = oMoneda.Convertir(Convert.ToString(numero), true);
+
+            //return resultado;
+
+            return ConvertirNumeroAString.EnLetras(numero);
         }
     }
 }

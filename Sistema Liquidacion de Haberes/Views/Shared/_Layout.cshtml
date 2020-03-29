@@ -27,7 +27,20 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/scripts.js")
+
+    @{ 
+        var currentUrl = HttpContext.Current.Request.Url.AbsolutePath;
+    }
+
+    @switch (currentUrl)
+    {
+        case "/Home/Create":
+            @Scripts.Render("~/Scripts/scripts-create.js")
+            break;
+        case "/Home/Edit":
+            @Scripts.Render("~/Scripts/scripts-edit.js")
+            break;
+    }
 
     @RenderSection("scripts", required: false)
 </body>

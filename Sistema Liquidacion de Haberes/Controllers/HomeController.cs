@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Sistema_Liquidacion_de_Haberes.Models.DbModels;
 using System.Data.Entity.Validation;
 using System.Text;
+using Rotativa;
 
 namespace Sistema_Liquidacion_de_Haberes.Controllers
 {
@@ -100,6 +101,26 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
+
+        public ViewAsPdf ObtenerReciboDeSueldo(int idEmpleado)
+        {
+            return dbConnectionResources.ObtenerReciboEmpleado(idEmpleado);
+        }
+
+        public ActionResult LayoutRecibo(int idEmpleado)
+        {
+            return View(dbConnectionResources.ObtenerViewModelReciboEmpleado(idEmpleado));
+        }
+
+        public string ObtenerMesEnLetras(string numero)
+        {
+            return dbConnectionResources.ObtenerMesEnLetras(numero);
+        }
+
+        public string ObtenerNumeroEnLetras(string numero)
+        {            
+            return dbConnectionResources.ObtenerNumeroEnLetras(numero);
         }
     }
 }

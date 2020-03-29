@@ -25,6 +25,9 @@ namespace Sistema_Liquidacion_de_Haberes
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/recibo-css").Include(
+                "~/Content/recibo.css"));
         }
     }
 }

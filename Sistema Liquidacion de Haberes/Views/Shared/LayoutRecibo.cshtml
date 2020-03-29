@@ -1,4 +1,5 @@
-﻿
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelRecibo
+
 @{
     Layout = null;
 
@@ -12,7 +13,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/recibo.css")
+    @*<link href="@Server.MapPath("~/Content/recibo.css")" rel="stylesheet">*@
+    @Styles.Render("~/Content/recibo-css")
 </head>
 <body>
     <div class="contenedor">
@@ -35,8 +37,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Enero 2010</td>
-                                    <td>02/02/2009</td>
+                                    <td>Abril 2020</td>
+                                    <td>02/04/2020</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -54,9 +56,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Capital Federal</td>
-                                <td>Giménez Susana</td>
-                                <td>23</td>
+                                <td>@Html.DisplayTextFor(model => model.LugarTrabajo)</td>
+                                <td>@Html.DisplayTextFor(model => model.Apellido) @Html.DisplayTextFor(model => model.Nombre)</td>
+                                <td>@Html.DisplayTextFor(model => model.Legajo)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -76,10 +78,15 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>01/06/2007</td>
-                                <td>01/06/2007</td>
-                                <td></td>
-                                <td>27-26985698-7</td>
+                                <td>@Html.DisplayName(Model.FechaIngreso.ToString("dd/MM/yyyy"))</td>
+                                <td>@Html.DisplayName(Model.Antiguedad.ToString("dd/MM/yyyy"))</td>
+                                <td>
+                                    @if (Model.FechaEgreso.HasValue)
+                                    {
+                                        @Html.DisplayName(Model.FechaEgreso.Value.ToString("dd/MM/yyyy"))
+                                    }
+                                </td>
+                                <td>@Html.DisplayTextFor(model => model.Cuil)</td>
                                 <td>T.Indeterminado</td>
                                 <td>42/1989</td>
                             </tr>
@@ -92,16 +99,14 @@
                         <table class="cat-fun-tar" rules="all">
                             <thead class="mayuscula">
                                 <tr>
-                                    <th>Categoría</th>
-                                    <th>Función</th>
                                     <th>Tarea/Sector</th>
+                                    <th>Categoría</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Adm. 4°</td>
-                                    <td>Recepción</td>
-                                    <td>Oficinas</td>
+                                    <td>@Html.DisplayTextFor(model => model.Sector)</td>
+                                    <td>@Html.DisplayTextFor(model => model.Categoria)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -111,14 +116,12 @@
                                 <tr>
                                     <th>Ob. Social</th>
                                     <th>Plan</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>ATSA</td>
-                                    <td></td>
-                                    <td>2172</td>
+                                    <td>@Html.DisplayTextFor(model => model.ObraSocial)</td>
+                                    <td>@Html.DisplayTextFor(model => model.PlanObraSocial)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -136,9 +139,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Credicoop</td>
-                                    <td>Diciembre</td>
-                                    <td>09/12/2009</td>
+                                    <td>@Html.DisplayTextFor(model => model.NombreBanco)</td>
+                                    @Html.HiddenFor(model => model.FechaUltimoDeposito, new { @id = "ultimo-deposito", @Value = Model.FechaUltimoDeposito.ToString("dd/MM/yyyy") })
+                                    <td id="mes-ultimo-deposito"></td>
+                                    <td>@Html.DisplayName(Model.FechaUltimoDeposito.ToString("dd/MM/yyyy"))</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -161,31 +165,24 @@
                             <td></td>
                             <td>Sueldo Básico</td>
                             <td>30 días</td>
-                            <td>2.100,62</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Feriado Nacional</td>
-                            <td>1 día</td>
-                            <td>70,02</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>PRV Feriado</td>
-                            <td>5,22</td>
-                            <td></td>
+                            <td>@Html.DisplayTextFor(model => model.SueldoBasico)</td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Antigüedad</td>
-                            <td>4,00%</td>
-                            <td>87,03</td>
+                            @Html.HiddenFor(model => model.Antiguedad, new { @id = "fechaAntiguedad", @Value = Model.Antiguedad.ToString("dd/MM/yyyy") })
+                            <td>@Html.DisplayTextFor(model => model.PorcentajeAntiguedad)<span>%</span></td>
+                            @{ 
+                                var calculoAntiguedad = decimal.Round((Convert.ToDecimal(Model.PorcentajeAntiguedad) * Model.SueldoBasico / 100), 2);
+                            }
+                            <td>
+                                @if(calculoAntiguedad != 0)
+                                {
+                                    Html.DisplayName(calculoAntiguedad.ToString());
+                                }
+                            </td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -202,7 +199,7 @@
                             <td>Art. 42 Almuerzo</td>
                             <td></td>
                             <td></td>
-                            <td>360,00</td>
+                            <td>4000,00</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -216,18 +213,24 @@
                         <tr>
                             <td></td>
                             <td>Jubilación</td>
+                            @{
+                                var calculoJubilacion = decimal.Round((11 * Model.SueldoBasico / 100), 2);
+                            }
                             <td>11,00%</td>
                             <td></td>
                             <td></td>
-                            <td>259,21</td>
+                            <td>@calculoJubilacion</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Obra Social</td>
+                            @{
+                                var calculoObraSocial = decimal.Round((3 * Model.SueldoBasico / 100), 2);
+                            }
                             <td>3,00%</td>
                             <td></td>
                             <td></td>
-                            <td>70,69</td>
+                            <td>@calculoObraSocial</td>
                         </tr>
                     </tbody>
                 </table>
@@ -245,19 +248,32 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>2.351,04</td>
-                            <td>360,22</td>
-                            <td>509,27</td>
+                            @{ 
+                                var remunerativo = Model.SueldoBasico + calculoAntiguedad;
+                            }
+                            <td>@remunerativo</td>
+                            <td>4000,00</td>
+                            @{
+                                var calculoDescuentos = calculoJubilacion + calculoObraSocial;
+                            }
+                            <td>@calculoDescuentos</td>
                         </tr>
                         <tr class="total-final">
-                            <td colspan="4">En Letras Son Pesos: Dos mil doscientos diecinueve</td>
+                            <td colspan="4" id="neto-letras"<span>En Letras Son Pesos:</span></td>
                             <td class="mayuscula neto-cobrar">Neto a Cobrar</td>
-                            <td>2.202,00</td>
+                            @{ 
+                                var neto = remunerativo + 4000 - calculoDescuentos;
+                            }
+                            @Html.Hidden(neto.ToString(), new { @area = "" }, htmlAttributes: new { @id = "neto-numero", @Value = neto.ToString() });
+                            <td>@neto.ToString()</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    @Scripts.Render("~/Scripts/jquery-3.4.1.js")
+    @Scripts.Render("~/Scripts/scripts-recibo.js")
 </body>
 </html>

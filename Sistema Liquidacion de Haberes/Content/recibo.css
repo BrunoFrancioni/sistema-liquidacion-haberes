@@ -18,12 +18,26 @@ h1 {
 
 body {
     min-height: 100vh;
+    padding: 0;
+    margin: 0;
 }
 
 .contenedor {
     max-width: 1000px;
     width: 95%;
     margin: 0 auto;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tfoot {
+    display: table-footer-group;
+}
+
+tr {
+    page-break-inside: avoid;
 }
 
 /**
