@@ -140,8 +140,7 @@
                             <tbody>
                                 <tr>
                                     <td>@Html.DisplayTextFor(model => model.NombreBanco)</td>
-                                    @Html.HiddenFor(model => model.FechaUltimoDeposito, new { @id = "ultimo-deposito", @Value = Model.FechaUltimoDeposito.ToString("dd/MM/yyyy") })
-                                    <td id="mes-ultimo-deposito"></td>
+                                    <td>@Html.DisplayTextFor(model => model.MesUltimoDeposito) </td>
                                     <td>@Html.DisplayName(Model.FechaUltimoDeposito.ToString("dd/MM/yyyy"))</td>
                                 </tr>
                             </tbody>
@@ -172,17 +171,8 @@
                         <tr>
                             <td></td>
                             <td>Antigüedad</td>
-                            @Html.HiddenFor(model => model.Antiguedad, new { @id = "fechaAntiguedad", @Value = Model.Antiguedad.ToString("dd/MM/yyyy") })
-                            <td>@Html.DisplayTextFor(model => model.PorcentajeAntiguedad)<span>%</span></td>
-                            @{ 
-                                var calculoAntiguedad = decimal.Round((Convert.ToDecimal(Model.PorcentajeAntiguedad) * Model.SueldoBasico / 100), 2);
-                            }
-                            <td>
-                                @if(calculoAntiguedad != 0)
-                                {
-                                    Html.DisplayName(calculoAntiguedad.ToString());
-                                }
-                            </td>
+                            <td>@Html.DisplayTextFor(model => model.PorcentajeAntiguedad)<span>,00%</span></td>
+                            <td>@Html.DisplayTextFor(model => model.CalculoAntiguedad)</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -224,13 +214,10 @@
                         <tr>
                             <td></td>
                             <td>Obra Social</td>
-                            @{
-                                var calculoObraSocial = decimal.Round((3 * Model.SueldoBasico / 100), 2);
-                            }
                             <td>3,00%</td>
                             <td></td>
                             <td></td>
-                            <td>@calculoObraSocial</td>
+                            <td>@Html.DisplayTextFor(model => model.CalculoObraSocial)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -248,32 +235,19 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            @{ 
-                                var remunerativo = Model.SueldoBasico + calculoAntiguedad;
-                            }
-                            <td>@remunerativo</td>
+                            <td>@Html.DisplayTextFor(model => model.Remunerativo)</td>
                             <td>4000,00</td>
-                            @{
-                                var calculoDescuentos = calculoJubilacion + calculoObraSocial;
-                            }
-                            <td>@calculoDescuentos</td>
+                            <td>@Html.DisplayTextFor(model => model.NoRemunerativo)</td>
                         </tr>
                         <tr class="total-final">
-                            <td colspan="4" id="neto-letras"<span>En Letras Son Pesos:</span></td>
+                            <td colspan="4"><span>En Letras Son Pesos: </span>@Html.DisplayTextFor(model => model.NetoEnLetras) </td>
                             <td class="mayuscula neto-cobrar">Neto a Cobrar</td>
-                            @{ 
-                                var neto = remunerativo + 4000 - calculoDescuentos;
-                            }
-                            @Html.Hidden(neto.ToString(), new { @area = "" }, htmlAttributes: new { @id = "neto-numero", @Value = neto.ToString() });
-                            <td>@neto.ToString()</td>
+                            <td>@Html.DisplayTextFor(model => model.Neto)</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
-    @Scripts.Render("~/Scripts/jquery-3.4.1.js")
-    @Scripts.Render("~/Scripts/scripts-recibo.js")
 </body>
 </html>

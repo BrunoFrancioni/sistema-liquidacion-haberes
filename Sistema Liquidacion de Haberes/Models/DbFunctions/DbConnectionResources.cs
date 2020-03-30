@@ -115,6 +115,8 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                            orderby e.idEmpleados descending
                            select e).First();
 
+                CrearDeposito(emp.idEmpleados);
+
                 emp.legajo = emp.idEmpleados;
 
                 db.Entry(emp).State = EntityState.Modified;
@@ -133,6 +135,21 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
             using(ApplicationDbContext db = new ApplicationDbContext())
             {
                 db.cuentasBancarias.Add(cuenta);
+                db.SaveChanges();
+            }
+        }
+
+        public void CrearDeposito(int idEmpleado)
+        {
+            using(ApplicationDbContext db = new ApplicationDbContext())
+            {
+                depositos deposito = new depositos()
+                {
+                    empleados_idEmpleados = idEmpleado,
+                    fecha = new DateTime(2020, 4, 2)
+                };
+
+                db.depositos.Add(deposito);
                 db.SaveChanges();
             }
         }
@@ -270,6 +287,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     Legajo = empleado.legajo,
                     FechaIngreso = empleado.fechaIngreso,
                     Antiguedad = empleado.antiguedad,
+                    MesUltimoDeposito = ObtenerMesEnLetras(empleado.antiguedad.ToString("dd/MM/yyyy")),
                     PorcentajeAntiguedad = CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy")),
                     FechaEgreso = empleado.fechaEgreso,
                     Cuil = empleado.cuil,
@@ -279,7 +297,14 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     PlanObraSocial = obraSocial.plan,
                     NombreBanco = banco.nombre,
                     FechaUltimoDeposito = DateTime.Now,
-                    SueldoBasico = categoria.salario
+                    SueldoBasico = categoria.salario,
+                    CalculoAntiguedad = decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2),
+                    CalculoJubilacion = decimal.Round((11 * categoria.salario / 100), 2),
+                    CalculoObraSocial = decimal.Round((3 * categoria.salario / 100), 2),
+                    Remunerativo = categoria.salario + decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2),
+                    NoRemunerativo = decimal.Round((11 * categoria.salario / 100), 2) + decimal.Round((3 * categoria.salario / 100), 2),
+                    Neto = categoria.salario + decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2) + decimal.Round(4000, 2) - decimal.Round((11 * categoria.salario / 100), 2) - decimal.Round((3 * categoria.salario / 100), 2),
+                    NetoEnLetras = ObtenerNumeroEnLetras((categoria.salario + decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2) + decimal.Round(4000, 2) - decimal.Round((11 * categoria.salario / 100), 2) - decimal.Round((3 * categoria.salario / 100), 2)).ToString())
                 };
 
                 return viewModelRecibo;
@@ -288,9 +313,11 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
         public string ObtenerMesEnLetras(string numero)
         {
+            string mes = numero.Substring(3, 2);
+
             string resultado = "";
                 
-            switch (numero)
+            switch (mes)
             {
                 case "01":
                     resultado = "Enero";
@@ -354,15 +381,11 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
         private string DiferenciaFechas(DateTime fechaCorte, DateTime fechaAntiguedad)
         {
-            int anios;
-            int meses;
-            int dias;
+            string str;
 
-            string str = "";
-
-            anios = (fechaCorte.Year - fechaAntiguedad.Year);
-            meses = (fechaCorte.Month - fechaAntiguedad.Month);
-            dias = (fechaCorte.Day - fechaAntiguedad.Day);
+            int anios = (fechaCorte.Year - fechaAntiguedad.Year);
+            int meses = (fechaCorte.Month - fechaAntiguedad.Month);
+            int dias = (fechaCorte.Day - fechaAntiguedad.Day);
 
             if(meses < 0)
             {

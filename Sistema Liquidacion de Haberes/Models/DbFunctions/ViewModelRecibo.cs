@@ -21,6 +21,8 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Antiguedad { get; set; }
 
+        public string MesUltimoDeposito { get; set; }
+
         public string PorcentajeAntiguedad { get; set; }
 
         [DataType(DataType.Date)]
@@ -39,5 +41,19 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         public DateTime FechaUltimoDeposito { get; set; }
 
         public decimal SueldoBasico { get; set; }
+
+        public decimal CalculoAntiguedad { get; set; }
+
+        public decimal CalculoJubilacion { get; set; }
+
+        public decimal CalculoObraSocial { get; set; }
+
+        public decimal Remunerativo { get; set; }
+
+        public decimal NoRemunerativo { get; set; }
+
+        public decimal Neto { get; set; }
+
+        public string NetoEnLetras { get; set; }
     }
 }
