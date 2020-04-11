@@ -29,7 +29,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models
             decimales = Convert.ToInt32(Math.Round((nro - entero) * 100, 2));
             if (decimales > 0)
             {
-                dec = " CON " + decimales.ToString() + "/100";
+                dec = " CON " + ToText(Convert.ToDouble(decimales));
             }
 
             res = ToText(Convert.ToDouble(entero)) + dec;
