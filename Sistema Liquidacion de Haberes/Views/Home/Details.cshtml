@@ -168,6 +168,11 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { idEmpleado = Model.IdEmpleado }, new { @class = "btn btn-primary" }) |
-    @Html.ActionLink("Retornar al inicio", "Index", new { }, new { @class= "btn btn-info" })
+    @if (Model.Activo == true)
+    {
+        @Html.ActionLink("Edit", "Edit", new { idEmpleado = Model.IdEmpleado }, new { @class = "btn btn-primary" }) 
+        @Html.Display("|")
+    }
+
+    @Html.ActionLink("Retornar al inicio", "Index", new { }, new { @class = "btn btn-info" })
 </p>
