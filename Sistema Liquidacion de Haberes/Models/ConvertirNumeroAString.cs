@@ -38,7 +38,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models
 
         private static string ToText(double value)
         {
-            string Num2Text = "";
+            string Num2Text;
             value = Math.Truncate(value);
             if (value == 0) Num2Text = "CERO";
             else if (value == 1) Num2Text = "UNO";
