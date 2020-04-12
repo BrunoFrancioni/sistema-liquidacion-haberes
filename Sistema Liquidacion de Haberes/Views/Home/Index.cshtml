@@ -1,6 +1,6 @@
-﻿@model IEnumerable<Sistema_Liquidacion_de_Haberes.Models.DbFunctions.ViewModelEmployee>
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.IndexViewModel
 
-@{ 
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -15,31 +15,31 @@
     <thead class="thead-dark">
         <tr>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayName("NOMBRE")
             </th>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.Apellido)
+                @Html.DisplayName("APELLIDO")
             </th>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.LugarTrabajo)
+                @Html.DisplayName("LUGAR DE TRABAJO")
             </th>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.Legajo)
+                @Html.DisplayName("LEGAJO")
             </th>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.FechaIngreso)
+                @Html.DisplayName("FECHA DE INGRESO")
             </th>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.ObraSocial)
+                @Html.DisplayName("OBRA SOCIAL")
             </th>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.NombreSector)
+                @Html.DisplayName("SECTOR")
             </th>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.NombreCategoria)
+                @Html.DisplayName("CATEGORÍA")
             </th>
             <th class="align-middle">
-                @Html.DisplayNameFor(model => model.Activo)
+                @Html.DisplayName("ACTIVO")
             </th>
             <th class="align-middle">
                 @Html.DisplayName("OPCIONES")
@@ -48,9 +48,9 @@
     </thead>
 
     <tbody>
-        @if (Model.Count() != 0)
+        @if (Model.Empleados.Count() != 0)
         {
-            foreach (var item in Model)
+            foreach (var item in Model.Empleados)
             {
                 <tr>
                     <td>
@@ -95,8 +95,8 @@
                     }
                     <td>
                         @*@Html.ActionLink("Edit", "Edit", new { idEmpleado = item.IdEmpleado }) |
-                    @Html.ActionLink("Details", "Details", new { idEmpleado = item.IdEmpleado }) |
-                    @Html.ActionLink("Dar de baja", "Delete", new { idEmpleado = item.IdEmpleado })*@
+                            @Html.ActionLink("Details", "Details", new { idEmpleado = item.IdEmpleado }) |
+                            @Html.ActionLink("Dar de baja", "Delete", new { idEmpleado = item.IdEmpleado })*@
                         <table class="table table-borderless table-sm">
                             <tr>
                                 <td><a href="@Url.Action("Details", "Home", new { idEmpleado = item.IdEmpleado })"><i class="fas fa-info"></i></a></td>
@@ -132,3 +132,5 @@
     </tbody>
 
 </table>
+
+@Html.Partial("_Paginador", Model)

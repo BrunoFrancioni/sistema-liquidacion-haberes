@@ -15,11 +15,11 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
     {
         private readonly DbConnectionResources dbConnectionResources = new DbConnectionResources();
 
-        public ActionResult Index()
+        public ActionResult Index(int pagina = 1)
         {
             ViewBag.Title = "Home Page";
 
-            return View(dbConnectionResources.ObtenerEmpleados());
+            return View(dbConnectionResources.ObtenerEmpleados(pagina));
         }
 
         public ActionResult Details(int idEmpleado)
@@ -111,16 +111,6 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
         public ActionResult LayoutRecibo(int idEmpleado)
         {
             return View(dbConnectionResources.ObtenerViewModelReciboEmpleado(idEmpleado));
-        }
-
-        public string ObtenerMesEnLetras(string numero)
-        {
-            return dbConnectionResources.ObtenerMesEnLetras(numero);
-        }
-
-        public string ObtenerNumeroEnLetras(string numero)
-        {            
-            return dbConnectionResources.ObtenerNumeroEnLetras(numero);
         }
     }
 }

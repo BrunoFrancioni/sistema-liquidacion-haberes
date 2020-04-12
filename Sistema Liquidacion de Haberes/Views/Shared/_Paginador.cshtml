@@ -1,0 +1,46 @@
+﻿@model Sistema_Liquidacion_de_Haberes.Models.DbFunctions.IndexViewModel
+
+
+@{
+    var cantidadPaginas = (int)Math.Ceiling((double)Model.TotalDeRegistros / Model.RegistrosPorPagina);
+
+    int inicial = 1;
+    var radio = 1;
+    var cantidadMaximoDePaginas = radio * 2 + 1;
+    int final = (cantidadPaginas > cantidadMaximoDePaginas) ? cantidadMaximoDePaginas : cantidadPaginas;
+
+    if (Model.PaginaActual > radio + 1)
+    {
+        inicial = Model.PaginaActual - radio;
+        if (cantidadPaginas > Model.PaginaActual + radio)
+        {
+            final = Model.PaginaActual + radio;
+        }
+        else
+        {
+            final = cantidadPaginas;
+        }
+    }
+}
+
+    <ul class="pagination">
+        <li>@Html.ActionLink("Primera", null, new { pagina = 1 }, new { @class = "btn btn-warning" })</li>
+
+        &nbsp;&nbsp;
+
+        @for (int i = inicial; i <= final; i++)
+        {
+            if (i == Model.PaginaActual)
+            {
+                <li style="margin-right: 5px;">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "btn btn-primary active" })</li>
+            }
+            else
+            {
+                <li style="margin-right: 5px;">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "btn btn-primary" })</li>
+            }
+        }
+
+        &nbsp;
+
+        <li>@Html.ActionLink("Ultima", null, new { pagina = cantidadPaginas }, new { @class = "btn btn-warning" })</li>
+    </ul>

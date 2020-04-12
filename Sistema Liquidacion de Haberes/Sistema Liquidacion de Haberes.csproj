@@ -139,7 +139,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ConvertirNumeroAString.cs" />
+    <Compile Include="Models\DbFunctions\BaseModel.cs" />
     <Compile Include="Models\DbFunctions\DbConnectionResources.cs" />
+    <Compile Include="Models\DbFunctions\IndexViewModel.cs" />
     <Compile Include="Models\DbFunctions\ViewModelCreateEmployee.cs" />
     <Compile Include="Models\DbFunctions\ViewModelEditEmployee.cs" />
     <Compile Include="Models\DbFunctions\ViewModelEmployee.cs" />
@@ -180,7 +182,6 @@
     <Compile Include="Models\DbModels\sectores.cs">
       <DependentUpon>ApplicationDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Moneda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -306,7 +307,6 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\scripts-create.js" />
     <Content Include="Scripts\scripts-edit.js" />
-    <Content Include="Scripts\scripts-recibo.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -407,6 +407,7 @@
     <Content Include="Views\Shared\_Bancos.cshtml" />
     <Content Include="Views\Shared\_ObrasSocialesEdit.cshtml" />
     <Content Include="Views\Shared\_CategoriasEdit.cshtml" />
+    <Content Include="Views\Shared\_Paginador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

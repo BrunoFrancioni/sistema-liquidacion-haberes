@@ -16,13 +16,19 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         /*
          * VIEW RESOURCES
          */
-        public IEnumerable<ViewModelEmployee> ObtenerEmpleados()
+        public IndexViewModel ObtenerEmpleados(int pagina = 1)
         {
+            int cantidadRegistrosPorPagina = 10;
+
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var idEmpleados = (from empleado in db.empleados
                                    orderby empleado.activo descending
-                                   select empleado.idEmpleados).ToList();
+                                   select empleado.idEmpleados)
+                                   .Skip((pagina - 1) * cantidadRegistrosPorPagina)
+                                   .Take(cantidadRegistrosPorPagina);
+
+                var totalDeRegistros = db.empleados.Count();
 
                 List<ViewModelEmployee> empleados = new List<ViewModelEmployee>();
 
@@ -31,7 +37,13 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     empleados.Add(ObtenerEmpleado(id));
                 }
 
-                return (IEnumerable<ViewModelEmployee>) empleados;
+                var modelo = new IndexViewModel();
+                modelo.Empleados = (IEnumerable<ViewModelEmployee>) empleados;
+                modelo.PaginaActual = pagina;
+                modelo.TotalDeRegistros = totalDeRegistros;
+                modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
+
+                return modelo;
             }
         }
 
@@ -404,21 +416,6 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                 return "Fecha Invalida";
             }
 
-            //if(anios > 0)
-            //{
-            //    str = str + anios.ToString() + " años ";
-            //}
-
-            //if (meses > 0)
-            //{
-            //    str = str + meses.ToString() + " meses ";
-            //}
-
-            //if (dias > 0)
-            //{
-            //    str = str + dias.ToString() + " dias ";
-            //}
-
             str = anios.ToString();
 
             return str;
@@ -426,12 +423,6 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
         public string ObtenerNumeroEnLetras(string numero)
         {
-            //Moneda oMoneda = new Moneda();
-
-            //string resultado = oMoneda.Convertir(Convert.ToString(numero), true);
-
-            //return resultado;
-
             return ConvertirNumeroAString.EnLetras(numero);
         }
     }
