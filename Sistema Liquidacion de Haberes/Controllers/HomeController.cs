@@ -22,6 +22,10 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
             return View(dbConnectionResources.ObtenerEmpleados(pagina));
         }
 
+        public ActionResult Busqueda(int pagina = 1, string cadena = "")
+        {
+            return View(dbConnectionResources.ObtenerBusquedaEmpleados(pagina, cadena));
+        }
         public ActionResult Details(int idEmpleado)
         {
             return View(dbConnectionResources.ObtenerEmpleado(idEmpleado));

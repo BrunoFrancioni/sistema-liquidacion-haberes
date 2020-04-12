@@ -21,8 +21,37 @@
             final = cantidadPaginas;
         }
     }
+
+    var currentUrl = HttpContext.Current.Request.Url.AbsolutePath;
 }
 
+@if (currentUrl == "/Home/Busqueda")
+{
+    <div class="container row d-flex justify-content-between form-group">
+        @Html.ActionLink("Volver al inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-info btn-md" })
+
+        <ul class="pagination">
+            <li class="page-item">@Html.ActionLink("Primera", null, new { pagina = 1 }, new { @class = "page-link" })</li>
+
+            @for (int i = inicial; i <= final; i++)
+            {
+                if (i == Model.PaginaActual)
+                {
+                    <li class="page-item active">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "page-link" })</li>
+                }
+                else
+                {
+                    <li class="page-item">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "page-link" })</li>
+                }
+            }
+
+            <li class="page-item">@Html.ActionLink("Ultima", null, new { pagina = cantidadPaginas }, new { @class = "page-link" })</li>
+        </ul>
+    </div>
+
+}
+else
+{
     <ul class="pagination justify-content-end">
         <li class="page-item">@Html.ActionLink("Primera", null, new { pagina = 1 }, new { @class = "page-link" })</li>
 
@@ -40,3 +69,4 @@
 
         <li class="page-item">@Html.ActionLink("Ultima", null, new { pagina = cantidadPaginas }, new { @class = "page-link" })</li>
     </ul>
+}

@@ -307,6 +307,7 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\scripts-create.js" />
     <Content Include="Scripts\scripts-edit.js" />
+    <Content Include="Scripts\scripts-index.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -408,6 +409,7 @@
     <Content Include="Views\Shared\_ObrasSocialesEdit.cshtml" />
     <Content Include="Views\Shared\_CategoriasEdit.cshtml" />
     <Content Include="Views\Shared\_Paginador.cshtml" />
+    <Content Include="Views\Home\Busqueda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
