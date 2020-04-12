@@ -23,24 +23,20 @@
     }
 }
 
-    <ul class="pagination">
-        <li>@Html.ActionLink("Primera", null, new { pagina = 1 }, new { @class = "btn btn-warning" })</li>
-
-        &nbsp;&nbsp;
+    <ul class="pagination justify-content-end">
+        <li class="page-item">@Html.ActionLink("Primera", null, new { pagina = 1 }, new { @class = "page-link" })</li>
 
         @for (int i = inicial; i <= final; i++)
         {
             if (i == Model.PaginaActual)
             {
-                <li style="margin-right: 5px;">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "btn btn-primary active" })</li>
+                <li class="page-item active">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "page-link" })</li>
             }
             else
             {
-                <li style="margin-right: 5px;">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "btn btn-primary" })</li>
+                <li class="page-item">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "page-link" })</li>
             }
         }
 
-        &nbsp;
-
-        <li>@Html.ActionLink("Ultima", null, new { pagina = cantidadPaginas }, new { @class = "btn btn-warning" })</li>
+        <li class="page-item">@Html.ActionLink("Ultima", null, new { pagina = cantidadPaginas }, new { @class = "page-link" })</li>
     </ul>
