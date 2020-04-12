@@ -44,7 +44,7 @@
     </thead>
 
     <tbody>
-        @if (Model.Empleados.Count() != 0)
+        @if (Model.Empleados != null)
         {
             foreach (var item in Model.Empleados)
             {
@@ -125,11 +125,5 @@
     </tbody>
 
 </table>
-
-@*<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        @Html.ActionLink("Volver al inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-info" })
-    </div>
-</div>*@
 
 @Html.Partial("_Paginador", Model)

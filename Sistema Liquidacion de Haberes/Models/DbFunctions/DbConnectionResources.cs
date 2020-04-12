@@ -37,11 +37,12 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     empleados.Add(ObtenerEmpleado(id));
                 }
 
-                var modelo = new IndexViewModel();
-                modelo.Empleados = (IEnumerable<ViewModelEmployee>) empleados;
-                modelo.PaginaActual = pagina;
-                modelo.TotalDeRegistros = totalDeRegistros;
-                modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
+                var modelo = new IndexViewModel() {
+                    Empleados = (IEnumerable<ViewModelEmployee>)empleados,
+                    PaginaActual = pagina,
+                    TotalDeRegistros = totalDeRegistros,
+                    RegistrosPorPagina = cantidadRegistrosPorPagina
+                };
 
                 return modelo;
             }
@@ -51,40 +52,43 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         {
             int cantidadRegistrosPorPagina = 10;
 
-            using (ApplicationDbContext db = new ApplicationDbContext())
+            if(cadena == "")
             {
-                var idEmpleados = (from empleado in db.empleados
-                                   where empleado.apellido.Contains(cadena)
-                                   orderby empleado.idEmpleados
-                                   select empleado.idEmpleados)
-                                   .Skip((pagina - 1) * cantidadRegistrosPorPagina)
-                                   .Take(cantidadRegistrosPorPagina);
-
-                //var i = db.empleados.Skip((pagina - 1) * cantidadRegistrosPorPagina)
-                //                    .Where(e => e.apellido.Contains(cadena))
-                //                    .Select(e => e.idEmpleados)
-                //                    .Take(cantidadRegistrosPorPagina).ToList();
-
-                var totalDeRegistros = idEmpleados.Count();
                 var modelo = new IndexViewModel();
-
-                if (totalDeRegistros != 0)
-                {
-                    List<ViewModelEmployee> empleados = new List<ViewModelEmployee>();
-
-                    foreach (var id in idEmpleados)
-                    {
-                        empleados.Add(ObtenerEmpleado(id));
-                    }
-
-                    modelo.Empleados = (IEnumerable<ViewModelEmployee>)empleados;
-                    modelo.PaginaActual = pagina;
-                    modelo.TotalDeRegistros = totalDeRegistros;
-                    modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
-                }
-
                 return modelo;
             }
+            else
+            {
+                using (ApplicationDbContext db = new ApplicationDbContext())
+                {
+                    var idEmpleados = (from empleado in db.empleados
+                                       where empleado.apellido.Contains(cadena)
+                                       orderby empleado.idEmpleados
+                                       select empleado.idEmpleados)
+                                       .Skip((pagina - 1) * cantidadRegistrosPorPagina)
+                                       .Take(cantidadRegistrosPorPagina);
+
+                    var totalDeRegistros = idEmpleados.Count();
+                    var modelo = new IndexViewModel();
+
+                    if (totalDeRegistros != 0)
+                    {
+                        List<ViewModelEmployee> empleados = new List<ViewModelEmployee>();
+
+                        foreach (var id in idEmpleados)
+                        {
+                            empleados.Add(ObtenerEmpleado(id));
+                        }
+
+                        modelo.Empleados = (IEnumerable<ViewModelEmployee>)empleados;
+                        modelo.PaginaActual = pagina;
+                        modelo.TotalDeRegistros = totalDeRegistros;
+                        modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
+                    }
+
+                    return modelo;
+                }
+            }            
         }
 
         public ViewModelEmployee ObtenerEmpleado(int idEmpleado)

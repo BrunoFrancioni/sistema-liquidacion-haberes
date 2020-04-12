@@ -307,7 +307,6 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\scripts-create.js" />
     <Content Include="Scripts\scripts-edit.js" />
-    <Content Include="Scripts\scripts-index.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />

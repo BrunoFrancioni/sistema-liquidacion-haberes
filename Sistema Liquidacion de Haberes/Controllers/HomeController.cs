@@ -19,31 +19,80 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            return View(dbConnectionResources.ObtenerEmpleados(pagina));
+            var empleados = new IndexViewModel();
+
+            try
+            {
+                empleados = dbConnectionResources.ObtenerEmpleados(pagina);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            return View(empleados);
         }
 
+        [HttpGet]
         public ActionResult Busqueda(int pagina = 1, string cadena = "")
         {
-            return View(dbConnectionResources.ObtenerBusquedaEmpleados(pagina, cadena));
+            var empleados = new IndexViewModel();
+
+            try
+            {
+                empleados = dbConnectionResources.ObtenerBusquedaEmpleados(pagina, cadena);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            return View(empleados);
         }
+
         public ActionResult Details(int idEmpleado)
         {
-            return View(dbConnectionResources.ObtenerEmpleado(idEmpleado));
+            try
+            {
+                return View(dbConnectionResources.ObtenerEmpleado(idEmpleado));
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return RedirectToAction("Index");
+            }
+            
         }
 
         [HttpGet]
         public ActionResult Delete(int idEmpleado)
         {
-            return View(dbConnectionResources.ObtenerEmpleado(idEmpleado));
+            try
+            {
+                return View(dbConnectionResources.ObtenerEmpleado(idEmpleado));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteEmployee(int idEmpleado)
         {
-            dbConnectionResources.DarDeBajaEmpleado(idEmpleado);
+            try
+            {
+                dbConnectionResources.DarDeBajaEmpleado(idEmpleado);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return RedirectToAction("Delete", new { idEmpleado });
+            }
         }
 
         public ActionResult Create()
@@ -62,6 +111,7 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e.ToString());
                     return RedirectToAction("Create");
                 }
             }
@@ -74,9 +124,17 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
         [HttpGet]
         public ActionResult Edit(int idEmpleado)
         {
-            var empleado = dbConnectionResources.ObtenerRecursosEditarEmpleado(idEmpleado);
+            try
+            {
+                var empleado = dbConnectionResources.ObtenerRecursosEditarEmpleado(idEmpleado);
 
-            return View(empleado);
+                return View(empleado);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpGet]
@@ -103,7 +161,8 @@ namespace Sistema_Liquidacion_de_Haberes.Controllers
             }
             catch(Exception e)
             {
-                return RedirectToAction("Index");
+                Console.WriteLine(e.ToString());
+                return RedirectToAction("Edit", new { empleado });
             }
         }
 
