@@ -1,6 +1,6 @@
 ﻿/**
     GLOBALES
-**/
+    **/
 
 html {
     box-sizing: border-box;
@@ -42,7 +42,7 @@ tr {
 
 /**
     FRAMEWORK
-**/
+    **/
 
 .centrar-texto {
     text-align: center;
@@ -58,7 +58,7 @@ tr {
 
 /**
     TABLA
-**/
+    **/
 
 div.recibo-haberes {
     border: 1px solid black;
@@ -75,7 +75,7 @@ div.recibo-haberes h2 {
 
 /**
     DATOS EMPRESA Y PERÍODO PAGO
-**/
+    **/
 
 div.empresa-periodo {
     display: flex;
@@ -93,7 +93,7 @@ table.periodo-pago {
 
 /**
     LUGAR DE TRABAJO, APELLIDO NOMBRE Y LEGAJO
-**/
+    **/
 
 table.lugar-nombre {
     width: 100%;
@@ -104,7 +104,7 @@ table.lugar-nombre {
 
 /**
     OTROS DATOS EMPLEADO(INGRESO, ANTIGUEDAD, EGRESO, ...)
-**/
+    **/
 
 table.datos-empleado {
     width: 100%;
@@ -114,7 +114,7 @@ table.datos-empleado {
 
 /**
     CATEGORÍA, OBRA SOCIAL Y ÚLTIMO DEPÓSITO
-**/
+    **/
 
 div.dempleado-deposito {
     display: flex;
@@ -158,7 +158,7 @@ table.resumen {
 
 /**
     TOTALES
-**/
+    **/
 
 table.totales {
     width: 100%;
