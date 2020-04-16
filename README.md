@@ -138,3 +138,11 @@ Se establece que cada cuenta bancaria pertenece a un sólo banco y tiene su prop
 ### Tabla Depósitos :moneybag:
 
 Por cada depósito de sueldo, se guarda el empleado y la fecha de depósito.
+
+### Aspectos de mejorar del sistema
+
+- Pobre desarrollo de FrontEnd. Es un sistema estático en el que en cada solicitud se tiene que recargar la página para ir hasta el servidor.
+- Tiene funcionamiento estático. No posee lógica para que funcione mes a mes.
+- Los legajos no tienen lógica. Sólo toman el valor número de ID colocado por la Base de Datos autoincrementalmente.
+- No tiene la capacidad de registrar la asistencia de cada empledado, ni los depósitos registrados cada mes, asi como también los feriados trabajados y las horas extras trabajadas.
+- No posee Pruebas Unitarias que realmente prueben el sistema y nos permitan analizar su correcto funcionamiento a medida que desarrollamos.
