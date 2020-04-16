@@ -26,28 +26,42 @@ namespace Sistema_Liquidacion_de_Haberes.Tests.Controllers
         }
 
         [TestMethod]
-        public void About()
+        public void Busqueda()
         {
-            // Arrange
             HomeController controller = new HomeController();
 
-            // Act
-            ViewResult result = controller.About() as ViewResult;
+            ViewResult result = controller.Busqueda() as ViewResult;
 
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.IsNotNull(result);
+        }
+        
+        [TestMethod]
+        public void Detalles()
+        {
+            HomeController controller = new HomeController();
+
+            ActionResult result = controller.Details(1) as ActionResult;
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void Contact()
+        public void Delete()
         {
-            // Arrange
             HomeController controller = new HomeController();
 
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            ActionResult result = controller.Delete(1) as ActionResult;
 
-            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void Create()
+        {
+            HomeController controller = new HomeController();
+
+            ViewResult result = controller.Create() as ViewResult;
+
             Assert.IsNotNull(result);
         }
     }
