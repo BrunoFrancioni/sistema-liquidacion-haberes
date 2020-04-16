@@ -232,7 +232,8 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     Antiguedad = empleado.antiguedad,
                     FechaIngreso = empleado.fechaIngreso,
                     IdObraSocial = empleado.obrasSociales_idobrasSociales,
-                    IdCategoria = categoria.idCategorias
+                    IdCategoria = categoria.idCategorias,
+                    Activo = empleado.activo
                 };
 
                 return editEmployeeModel;
@@ -278,6 +279,11 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                 if (empleadoActual.categorias_idcategorias != empleado.IdCategoria)
                 {
                     empleadoActual.categorias_idcategorias = empleado.IdCategoria;
+                }
+
+                if (empleadoActual.activo == false)
+                {
+                    empleadoActual.activo = true;
                 }
 
                 db.Entry(empleadoActual).State = EntityState.Modified;

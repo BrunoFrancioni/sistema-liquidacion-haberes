@@ -113,17 +113,18 @@
                                 {
                                     <td><a href="@Url.Action("Delete", "Home", new { idEmpleado = item.IdEmpleado })"><i class="fas fa-user-times"></i></a></td>
                                 }
+                                else
+                                {
+                                    <td><a href="@Url.Action("Edit", "Home", new { idEmpleado = item.IdEmpleado })"><i class="fas fa-arrow-up"></i></a></td>
+                                }
                             </tr>
                             <tr>
                                 @if (item.Activo == true)
                                 {
                                     <td><a href="@Url.Action("Edit", "Home", new { idEmpleado = item.IdEmpleado })"><i class="far fa-edit"></i></a></td>
-                                }
-                                @*@Html.ActionLink("Recibo", "LayoutRecibo", new { idEmpleado = item.IdEmpleado })*@
-                                @if (item.Activo == true)
-                                {
                                     <td><a onclick="window.open('@Url.Action("ObtenerReciboDeSueldo", "Home",new { idEmpleado = item.IdEmpleado })')"><i class="fas fa-file-pdf"></i></a></td>
                                 }
+                                @*@Html.ActionLink("Recibo", "LayoutRecibo", new { idEmpleado = item.IdEmpleado })*@
                             </tr>
                         </table>
                     </td>

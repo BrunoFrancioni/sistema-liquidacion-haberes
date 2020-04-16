@@ -55,5 +55,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
         [Display(Name = "CATEGORÍA")]
         [Required]
         public int IdCategoria { get; set; }
+
+        public bool Activo { get; set; }
     }
 }
