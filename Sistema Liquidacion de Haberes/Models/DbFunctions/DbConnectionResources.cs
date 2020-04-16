@@ -340,6 +340,8 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
                 var banco = db.bancos.Single(b => b.idBancos == cuentaBancaria.bancos_idbancos);
 
+                var deposito = db.depositos.Single(d => d.empleados_idEmpleados == empleado.idEmpleados);
+
 
                 ViewModelRecibo viewModelRecibo = new ViewModelRecibo()
                 {
@@ -349,7 +351,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     Legajo = empleado.legajo,
                     FechaIngreso = empleado.fechaIngreso,
                     Antiguedad = empleado.antiguedad,
-                    MesUltimoDeposito = ObtenerMesEnLetras(empleado.antiguedad.ToString("dd/MM/yyyy")),
+                    MesUltimoDeposito = ObtenerMesEnLetras(deposito.fecha.ToString("dd/MM/yyyy")),
                     PorcentajeAntiguedad = CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy")),
                     FechaEgreso = empleado.fechaEgreso,
                     Cuil = empleado.cuil,
@@ -358,7 +360,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     ObraSocial = obraSocial.nombre,
                     PlanObraSocial = obraSocial.plan,
                     NombreBanco = banco.nombre,
-                    FechaUltimoDeposito = DateTime.Now,
+                    FechaUltimoDeposito = deposito.fecha,
                     SueldoBasico = categoria.salario,
                     CalculoAntiguedad = decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2),
                     CalculoJubilacion = decimal.Round((11 * categoria.salario / 100), 2),
