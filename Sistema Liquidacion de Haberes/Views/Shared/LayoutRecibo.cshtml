@@ -177,6 +177,22 @@
                             <td></td>
                         </tr>
                         <tr>
+                            <td></td>
+                            <td>Feriados trabajados</td>
+                            <td>@Html.DisplayTextFor(model => model.FeriadosTrabajados)<span> días</span></td>
+                            <td>@Html.DisplayTextFor(model => model.CalculoFeriadosTrabajados)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Horas extras trabajadas</td>
+                            <td>@Html.DisplayTextFor(model => model.HorasExtrasTrabajadas)<span> horas</span></td>
+                            <td>@Html.DisplayTextFor(model => model.CalculoHorasExtrasTrabajadas)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
                             <td>&nbsp;</td>
                             <td></td>
                             <td></td>
@@ -203,13 +219,10 @@
                         <tr>
                             <td></td>
                             <td>Jubilación</td>
-                            @{
-                                var calculoJubilacion = decimal.Round((11 * Model.SueldoBasico / 100), 2);
-                            }
                             <td>11,00%</td>
                             <td></td>
                             <td></td>
-                            <td>@calculoJubilacion</td>
+                            <td>@Html.DisplayTextFor(model => model.CalculoJubilacion)</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -237,7 +250,7 @@
                             <td></td>
                             <td>@Html.DisplayTextFor(model => model.Remunerativo)</td>
                             <td>4000,00</td>
-                            <td>@Html.DisplayTextFor(model => model.NoRemunerativo)</td>
+                            <td>@Html.DisplayTextFor(model => model.Descuentos)</td>
                         </tr>
                         <tr class="total-final">
                             <td colspan="4"><span>En Letras Son Pesos: </span>@Html.DisplayTextFor(model => model.NetoEnLetras) </td>

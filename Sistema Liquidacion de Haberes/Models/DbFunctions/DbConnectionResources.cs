@@ -202,7 +202,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                 depositos deposito = new depositos()
                 {
                     empleados_idEmpleados = idEmpleado,
-                    fecha = new DateTime(2020, 4, 2)
+                    fecha = new DateTime(2020, 4, 3)
                 };
 
                 db.depositos.Add(deposito);
@@ -342,6 +342,21 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
                 var deposito = db.depositos.Single(d => d.empleados_idEmpleados == empleado.idEmpleados);
 
+                Random rnd = new Random();
+                int feriadosTrabajados = rnd.Next(0, 3);
+                int horasExtraTrabajadas = rnd.Next(0, 10);
+
+                decimal calculoFeriadosTrabajados = decimal.Round(Convert.ToDecimal(feriadosTrabajados) * (categoria.salario / 30), 2);
+                decimal calculoHorasExtrasTrabajadas = decimal.Round(Convert.ToDecimal(horasExtraTrabajadas) * (((categoria.salario / 30) / 8) * Convert.ToDecimal(1.5)), 2);
+                decimal calculoAntiguedad = decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2);
+
+                decimal remunerativo = categoria.salario + calculoAntiguedad + calculoFeriadosTrabajados + calculoHorasExtrasTrabajadas;
+
+                decimal calculoJubilacion = decimal.Round((11 * remunerativo) / 100, 2);
+                decimal calculoObraSocial = decimal.Round((3 * remunerativo) / 100, 2);
+
+                decimal descuentos = calculoJubilacion + calculoObraSocial;
+                decimal neto = remunerativo + 4000 - descuentos;
 
                 ViewModelRecibo viewModelRecibo = new ViewModelRecibo()
                 {
@@ -362,13 +377,17 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     NombreBanco = banco.nombre,
                     FechaUltimoDeposito = deposito.fecha,
                     SueldoBasico = categoria.salario,
-                    CalculoAntiguedad = decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2),
-                    CalculoJubilacion = decimal.Round((11 * categoria.salario / 100), 2),
-                    CalculoObraSocial = decimal.Round((3 * categoria.salario / 100), 2),
-                    Remunerativo = categoria.salario + decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2),
-                    NoRemunerativo = decimal.Round((11 * categoria.salario / 100), 2) + decimal.Round((3 * categoria.salario / 100), 2),
-                    Neto = categoria.salario + decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2) + decimal.Round(4000, 2) - decimal.Round((11 * categoria.salario / 100), 2) - decimal.Round((3 * categoria.salario / 100), 2),
-                    NetoEnLetras = ObtenerNumeroEnLetras((categoria.salario + decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2) + decimal.Round(4000, 2) - decimal.Round((11 * categoria.salario / 100), 2) - decimal.Round((3 * categoria.salario / 100), 2)).ToString())
+                    FeriadosTrabajados = Convert.ToString(feriadosTrabajados),
+                    CalculoFeriadosTrabajados = calculoFeriadosTrabajados,
+                    HorasExtrasTrabajadas = Convert.ToString(horasExtraTrabajadas),
+                    CalculoHorasExtrasTrabajadas = calculoHorasExtrasTrabajadas,
+                    CalculoAntiguedad = calculoAntiguedad,
+                    CalculoJubilacion = calculoJubilacion,
+                    CalculoObraSocial = calculoObraSocial,
+                    Remunerativo = remunerativo,
+                    Descuentos = descuentos,
+                    Neto = neto,
+                    NetoEnLetras = ObtenerNumeroEnLetras(neto.ToString())
                 };
 
                 return viewModelRecibo;

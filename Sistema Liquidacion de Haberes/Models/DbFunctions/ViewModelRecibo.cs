@@ -42,6 +42,14 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
         public decimal SueldoBasico { get; set; }
 
+        public string FeriadosTrabajados { get; set; }
+
+        public decimal CalculoFeriadosTrabajados { get; set; }
+
+        public string HorasExtrasTrabajadas { get; set; }
+
+        public decimal CalculoHorasExtrasTrabajadas { get; set; }
+
         public decimal CalculoAntiguedad { get; set; }
 
         public decimal CalculoJubilacion { get; set; }
@@ -50,7 +58,7 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
         public decimal Remunerativo { get; set; }
 
-        public decimal NoRemunerativo { get; set; }
+        public decimal Descuentos { get; set; }
 
         public decimal Neto { get; set; }
 
