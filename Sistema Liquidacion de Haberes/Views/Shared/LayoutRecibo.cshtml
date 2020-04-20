@@ -88,7 +88,7 @@
                                 </td>
                                 <td>@Html.DisplayTextFor(model => model.Cuil)</td>
                                 <td>T.Indeterminado</td>
-                                <td>42/1989</td>
+                                <td>130/75</td>
                             </tr>
                         </tbody>
                     </table>
@@ -178,6 +178,14 @@
                         </tr>
                         <tr>
                             <td></td>
+                            <td>Presentismo</td>
+                            <td>8%</td>
+                            <td>@Html.DisplayTextFor(model => model.Presentismo)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
                             <td>Feriados trabajados</td>
                             <td>@Html.DisplayTextFor(model => model.FeriadosTrabajados)<span> días</span></td>
                             <td>@Html.DisplayTextFor(model => model.CalculoFeriadosTrabajados)</td>
@@ -231,6 +239,14 @@
                             <td></td>
                             <td></td>
                             <td>@Html.DisplayTextFor(model => model.CalculoObraSocial)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Ley N° 19.023 I.N.S.S.J.P</td>
+                            <td>3,00%</td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.DisplayTextFor(model => model.Ley19023)</td>
                         </tr>
                     </tbody>
                 </table>

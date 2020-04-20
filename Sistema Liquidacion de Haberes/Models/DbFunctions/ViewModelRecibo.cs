@@ -52,6 +52,9 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
 
         public decimal CalculoAntiguedad { get; set; }
 
+        public decimal Presentismo { get; set; }
+        public decimal Ley19023 { get; set; }
+
         public decimal CalculoJubilacion { get; set; }
 
         public decimal CalculoObraSocial { get; set; }

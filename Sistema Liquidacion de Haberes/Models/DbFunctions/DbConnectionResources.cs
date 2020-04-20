@@ -349,13 +349,15 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                 decimal calculoFeriadosTrabajados = decimal.Round(Convert.ToDecimal(feriadosTrabajados) * (categoria.salario / 30), 2);
                 decimal calculoHorasExtrasTrabajadas = decimal.Round(Convert.ToDecimal(horasExtraTrabajadas) * (((categoria.salario / 30) / 8) * Convert.ToDecimal(1.5)), 2);
                 decimal calculoAntiguedad = decimal.Round((Convert.ToDecimal(CalcularAntiguedad(empleado.antiguedad.ToString("dd/MM/yyyy"))) * categoria.salario / 100), 2);
+                decimal presentismo = decimal.Round((8 * categoria.salario) / 100, 2);
 
-                decimal remunerativo = categoria.salario + calculoAntiguedad + calculoFeriadosTrabajados + calculoHorasExtrasTrabajadas;
+                decimal remunerativo = categoria.salario + calculoAntiguedad + calculoFeriadosTrabajados + calculoHorasExtrasTrabajadas + presentismo;
 
                 decimal calculoJubilacion = decimal.Round((11 * remunerativo) / 100, 2);
                 decimal calculoObraSocial = decimal.Round((3 * remunerativo) / 100, 2);
+                decimal ley19023 = decimal.Round((3 * remunerativo) / 100, 2);
 
-                decimal descuentos = calculoJubilacion + calculoObraSocial;
+                decimal descuentos = calculoJubilacion + calculoObraSocial + ley19023;
                 decimal neto = remunerativo + 4000 - descuentos;
 
                 ViewModelRecibo viewModelRecibo = new ViewModelRecibo()
@@ -377,6 +379,8 @@ namespace Sistema_Liquidacion_de_Haberes.Models.DbFunctions
                     NombreBanco = banco.nombre,
                     FechaUltimoDeposito = deposito.fecha,
                     SueldoBasico = categoria.salario,
+                    Presentismo = presentismo,
+                    Ley19023 = ley19023,
                     FeriadosTrabajados = Convert.ToString(feriadosTrabajados),
                     CalculoFeriadosTrabajados = calculoFeriadosTrabajados,
                     HorasExtrasTrabajadas = Convert.ToString(horasExtraTrabajadas),
