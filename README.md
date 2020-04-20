@@ -7,6 +7,7 @@ Este proyecto consiste en el desarrollo de un sistema que permita la administrac
 - Visual Studio 2019 - IDE.
 - C# - lenguaje de programación.
 - ASP.NET MVC - framework de desarrollo.
+- Bootstrap.
 - Entity Framework - ORM.
 - SQL Server - gestor de bases de datos.
 
@@ -139,7 +140,7 @@ Se establece que cada cuenta bancaria pertenece a un sólo banco y tiene su prop
 
 Por cada depósito de sueldo, se guarda el empleado y la fecha de depósito.
 
-### Aspectos de mejorar del sistema :exclamation:
+### Aspectos a mejorar del sistema :exclamation:
 
 - Pobre desarrollo de FrontEnd. Es un sistema estático en el que en cada solicitud se tiene que recargar la página para ir hasta el servidor.
 - Tiene funcionamiento estático. No posee lógica para que funcione mes a mes.
